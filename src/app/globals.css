@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.dicetray {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 90vh;
+  background: rgba(255, 239, 198, 0.7529411765);
+  border: 5px double #b7221e;
+  border-radius: 20px;
+}
+.dicetray .tray-ttl {
+  border-bottom: 3px double #b7221e;
+}
+.dicetray .die .upper-log {
+  border: 1px solid #432818;
+  border-radius: 12px;
+  margin: 8px 0;
+  padding: 8px 16px;
+  height: 15vh;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+.dicetray .die .upper-log .log-result {
+  animation: 4s ease infinite slide;
+}
+.dicetray .die .upper-log::-webkit-scrollbar {
+  display: none;
+}
+.dicetray .die .upper-log:hover .log-result {
+  animation: none;
+}
+.dicetray .die .d-border {
+  aspect-ratio: 1/1;
+  padding: 3px;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+.dicetray .die input[type=number], .dicetray .die .dice-select, .dicetray .die .dice-menu {
+  text-align: center;
+  border: 1px solid #432818;
+}
+.dicetray .die .dice-select, .dicetray .die .dice-option {
+  background-color: white;
+}
+.dicetray .die .dice-option:hover {
+  background-color: #b7221e;
+  color: #ffefc6;
+}
+.dicetray .die .dice-option:hover .nn {
+  display: none;
+}
+.dicetray .die .l {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.dicetray .die .r {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.dicetray .die .under-log {
+  border: 1px solid #432818;
+  border-radius: 12px;
+  margin: 16px 0;
+  padding: 16px;
+  height: 30vh;
+  overflow: auto;
+}
+.dicetray .die .under-log .m-log {
+  display: inline-block;
+  aspect-ratio: 1/1;
+  text-align: center;
+  border: 1px solid #432818;
+  width: 30px;
+  padding: 4px;
+}
+.dicetray .die .under-log::-webkit-scrollbar {
+  display: none;
+}
+
+.bttn {
+  border: 1px solid #da2d28;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #da2d28;
+  color: #ffefc6;
+}
+
+.bttn:hover {
+  background-color: #b7221e;
+}
+
+.secondary-bttn {
+  border: 1px solid #da2d28;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: none;
+  color: #da2d28;
+}
+
+.secondary-bttn:hover {
+  background-color: #da2d28;
+  color: #ffefc6;
+}
+
+.bttn:active, .secondary-bttn:active {
+  background-color: #7e211e;
+}
+
+.cta-bttn {
+  height: 50px;
+  padding: 16px 32px;
+  border-radius: 10px;
+  color: white;
+}
