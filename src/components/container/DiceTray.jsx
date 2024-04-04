@@ -58,10 +58,8 @@ export const DiceTray = () => {
     
   return (
 
-    <div className='w-full dicetray text-center py-4'>
-        <h2 className="tray-ttl w-9/12 sm:w-10/12"> Dice tray: 
-                <D20 className='sm:w-1/12 w-2/12 m-2' faces={ lastResult <= 30 ? lastResult : 30 }/>
-        </h2>
+    <div className='relative w-full dicetray text-center py-4'>
+        <h2 className="text-5xl w-9/12 sm:w-10/12 py-4"> Dice tray: </h2>
         <DiceCounter 
             diceNumber={ dieNumber } 
             die={ die } 

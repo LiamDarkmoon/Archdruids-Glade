@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { noto } from "@/lib/fonts";
+import NavBar from './../components/container/NavBar';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,8 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-screen">
-      <body className={`${noto.className} antialiased`}>{children}</body>
+    <html lang="en">
+      <body className={`${noto.className} antialiased w-screen`}>
+        <NavBar/>
+        {children}
+      </body>
     </html>
   );
 }

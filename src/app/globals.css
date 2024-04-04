@@ -22,8 +22,12 @@
   justify-content: space-evenly;
   align-items: center;
   height: 90vh;
-  background: rgba(255, 239, 198, 0.7529411765);
-  border: 5px double #b7221e;
+  background: rgba(203, 241, 210, 0.43);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(203, 241, 210, 0.3);
   border-radius: 20px;
 }
 .dicetray .tray-ttl {

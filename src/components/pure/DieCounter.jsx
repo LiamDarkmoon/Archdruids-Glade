@@ -1,39 +1,43 @@
-import { useRef, useState } from 'react';
+'use client'
+import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Die from './Die';
 import Bttn from './Btn';
 import DieSelect from './DieSelect';
+import { useAnimation, motion } from 'framer-motion'
 
 
 const DiceCounter = ( { die, diceNumber, mod, roll, clear, diceRoll, chooseMod, chooseDie, chooseDNumber } ) => {
 
+    const controls = useAnimation()
     const [rolling, setRolling] = useState(false)
     const [reset, setReset] = useState(false)
 
     const qnt = useRef(null);
     const cMod = useRef(null);
+    const container = useRef(null);
 
-    const rolled = () => {
-        setRolling(false)
-    }
+    useEffect(() => {
+            controls.start({ rotate: 360,transition: { ease: "easeOut", duration: 1 } });  
+    }, [rolling])
+
+    const handleDragEnd = (event, info) => {
+        /* controls.start({ rotate: 360, transition: { ease: "easeOut", duration: 1 } }); */
+        setRolling(!rolling)
+        diceRoll()
+    };
 
     const handleClearButton = () => {
         clear()
-        setRolling(false)
         setReset(true)
         qnt.current.value = 1;
         cMod.current.value = 0;
     }
     
     const handleRollButton = () => {
-        setRolling(true)
+        setRolling(!rolling)
         diceRoll()
     }
-
-/*     const handleSelectDie = () => {
-        chooseDie()
-    } */
-
 
     //suming the result of the last roll
     const lastRoll = []
@@ -61,19 +65,19 @@ const DiceCounter = ( { die, diceNumber, mod, roll, clear, diceRoll, chooseMod, 
         <div className='die w-10/12 flex flex-col items-center' >
             {
                 diceNumber > 1 ?
-                <div className='upper-log w-10/12'>
+                <div className='upper-log w-full'>
                     <div className='log-result'>
-                        <h5 className='mt-1 mb-0'> Your Rolls: </h5>
-                        <h3 className='total mt-2'>{ diceNumber }D{ Number(die) }: { Number(roll[roll.length -1]) } + { Number(mod) } = { result } </h3>
-                        { roll.map((roll, i) => <h3 key={ i }> D{ Number(die) }: { Number(roll) } + { Number(mod) } = { Number(lastRoll[i]) } </h3>) }
+                        <h5 className='text-xl font-bold mt-1 mb-0'> Your Rolls: </h5>
+                        <h3 className='text-lg font-semibold total mt-2'>{ diceNumber }D{ Number(die) }: { Number(roll[roll.length -1]) } + { Number(mod) } = { result } </h3>
+                        { roll.map((roll, i) => <h3 key={ i } className='text-lg font-semibold total mt-2'> D{ Number(die) }: { Number(roll) } + { Number(mod) } = { Number(lastRoll[i]) } </h3>) }
                     </div>
                 </div>
 
                 :
 
                 <div className='upper-log w-full'>
-                    <h5 className='m-1 mb-0'> Your Roll: </h5>
-                    <h3 className='total mt-2'>{ diceNumber }D{ Number(die) }: { Number(roll[roll.length -1]) } + { Number(mod) } = { result } </h3>
+                    <h5 className='text-xl font-bold m-1 mb-0'> Your Roll: </h5>
+                    <h3 className='text-lg font-semibold total mt-2'>{ diceNumber }D{ Number(die) }: { Number(roll[roll.length -1]) } + { Number(mod) } = { result } </h3>
                 </div>
             } 
             <div className='w-full flex justify-evenly'>
@@ -83,12 +87,32 @@ const DiceCounter = ( { die, diceNumber, mod, roll, clear, diceRoll, chooseMod, 
                     <input className='r w-4/12' type='number' ref={ cMod } defaultValue={ 0 } min={ -99 } max={ 99 } onChange={ chooseMod }/>
                 </div>
                 <div className='sm:w-1/2 w-10/12 flex justify-end sm:ms-2 my-1 p-0'>
-                    <Bttn className='w-1/2 mx-1' type="submit" click={ handleRollButton } clean={ rolled } text='Roll'/>
-                    <button className='w-1/2 mx-1 secondary-bttn' type="submit" onClick={ handleClearButton }> Clear </button>
+                    <Bttn className='w-1/2 mx-1' click={ handleRollButton } text='Roll'/>
+                    <Bttn className='w-1/2 mx-1' click={ handleClearButton } text='Clear'/>
                 </div>
             </div>
             <div className='under-log w-full'>
-                <div className='flex flex-wrap h-full items-center justify-center px-4'>{ roll.length > 0 ? roll.map((r, i) => <Die key={i} className='w-3/12 sm:w-2/12 m-1 d-border' die={ die } faces={ die === 20 || r === roll[roll.length -1] ? lastRoll[i] : r } rolling={ rolling }/>) : <p>¡wep!</p> }</div>
+                <motion.div 
+                    className='flex flex-wrap h-full items-center justify-center px-4'
+                    ref={ container }
+                >
+                    { roll.length > 0 ? roll.map((r, i) => 
+                    <motion.span
+                        key={i} 
+                        className='w-3/12 sm:w-2/12 m-1 d-border'
+                        drag
+                        whileHover={{ scale: 1.1 }}
+                        animate={rolling ? {rotate: 360,transition: { ease: "easeOut", duration: 1 }} :{ rotate: 0,transition: { ease: "easeOut", duration: 1 }}}
+                        dragConstraints={ container }
+                        dragTransition={{ bounceStiffness: 900, bounceDamping: 5, power: 1 }}
+                        dragElastic={false}
+                        onDragEnd={ handleDragEnd }
+                    >
+                        <Die die={ die } faces={ die === 20 || r === roll[roll.length -1] ? lastRoll[i] : r }/> 
+                    </motion.span>)
+                        : 
+                        <p>¡wep!</p> }
+                </motion.div>
             </div>
         </div>
     );

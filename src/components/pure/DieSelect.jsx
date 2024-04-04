@@ -12,7 +12,6 @@ const diceOptions = [
 
 const DieSelect = ({ change, className }) => {
 
-
     return (
         <Select
             options={ diceOptions } 
