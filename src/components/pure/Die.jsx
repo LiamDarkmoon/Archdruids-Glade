@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { D20, D12, D10, D8, D6, D4 } from './Dice';
+import { useState } from 'react';
 
 const Die = ({ className, fillcolor, faces, die, }) => {
 

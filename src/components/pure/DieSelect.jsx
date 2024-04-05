@@ -10,13 +10,13 @@ const diceOptions = [
     { value: '20', label: 'D20' }
   ]
 
-const DieSelect = ({ change, className }) => {
+const DieSelect = ({ change, className, reset }) => {
 
     return (
         <Select
             options={ diceOptions } 
             onChange={ change } 
-            className={ className +' dice-select' } 
+            className={ className +' dice-select' }
             defaultValue={ diceOptions[5] }
             isSearchable={ false }
             unstyled
