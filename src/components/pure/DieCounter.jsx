@@ -6,6 +6,7 @@ import Bttn from './Btn';
 import DieSelect from './DieSelect';
 import { useAnimation, motion } from 'framer-motion';
 import { Dice } from './../../lib/diceClass';
+import { bounce } from './../../lib/utils';
 
 
 const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
@@ -13,11 +14,22 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
     const [reset, setReset] = useState(false);
     const [dices, setDices] = useState([new Dice(die, mod)]);
     const [result, setResult] = useState(1);
+    const [dimentions, setDimentions] = useState({containerWidth: 0, containerHeight: 0, dieWidth: 0, dieHeight: 0});
 
     // Refs
     const diceNumberInputRef = useRef(null);
     const ModInputRef = useRef(null);
     const DiceContainerRef = useRef(null);
+    const DiceRef = useRef(null);
+    const controls = useAnimation();
+
+    useEffect(() => {
+        let width = DiceContainerRef.current.clientWidth;
+        let Height = DiceContainerRef.current.clientHeight;
+        let Dwidth = DiceRef.current.clientWidth;
+        let DHeight = DiceRef.current.clientHeight;
+        setDimentions({containerWidth: width, containerHeight: Height, dieWidth: Dwidth, dieHeight: DHeight});
+    },[])
 
     const DiceNumber = (e) => {
         const value = Number.parseInt(e.target.value);
@@ -41,7 +53,7 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
         ModInputRef.current.value = 0;
         setDices([new Dice(die, mod)])
         setResult(1)
-        setLastResult(1)
+        controls.start({ x: 0, y: 0, rotate: 360, transition: { ease: "easeOut", duration: 10 }});
     }
     
     const handleRoll = (index) =>{
@@ -54,6 +66,7 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
         });
         setResult(result - lastResult + newDices[index].finalResult)
         setDices(newDices);
+        controls.start({ x: bounce(dimentions.containerWidth, dimentions.dieWidth), y: bounce(dimentions.containerHeight, dimentions.dieHeight), rotate: 360 });
     }
 
     const handleRollButton = () => {
@@ -67,7 +80,6 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
             newResult = newResult + die.finalResult;
         });
         setResult(newResult);
-        setLastResult(newResult);
     }
 
     const handleDieSelect = (e) => {
@@ -78,6 +90,18 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
             dice.result = 1;
             return dice;
         })
+        setDices(newDices);
+    }
+
+    const handleDragRoll = (index) =>{
+        let lastResult = dices[index].finalResult
+        const newDices = dices.map((dice, i) => {
+            if (index === i) {
+                dice.roll(mod);
+            }
+            return dice;
+        });
+        setResult(result - lastResult + newDices[index].finalResult)
         setDices(newDices);
     }
     
@@ -111,7 +135,7 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
                     <Bttn className='w-1/2 mx-1' click={ handleClearButton } text='Clear'/>
                 </div>
             </div>
-            <div className='under-log w-full'>
+            <div className='under-log w-full mouse-pointer'>
                 <motion.div 
                     className='flex flex-wrap h-full items-center justify-center px-4'
                     ref={ DiceContainerRef }
@@ -119,15 +143,16 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
                     { 
                         dices && dices.map((die, i) => 
                             <motion.span
-                                key={i} 
+                                key={i}
+                                ref={ DiceRef }
                                 className='w-3/12 sm:w-2/12 m-1 d-border'
                                 onClick={() => handleRoll(i)}
                                 drag
                                 whileHover={{ scale: 1.1 }}
-                                animate={die.rolling ? {rotate: 360,transition: { ease: "easeOut", duration: 1 }} :{ rotate: 0,transition: { ease: "easeOut", duration: 1 }}}
+                                animate={ die.rolling ? { x: bounce(dimentions.containerWidth, dimentions.dieWidth), y: bounce(dimentions.containerHeight, dimentions.dieHeight), rotate: 360 } : {x: 0, y: 0, rotate: 360} }
                                 dragConstraints={ DiceContainerRef }
-                                dragTransition={{ bounceStiffness: 900, bounceDamping: 5, power: 1 }}
-                                dragElastic={0.5}
+                                dragTransition={{ bounceStiffness: 900, bounceDamping: 3}}
+                                dragElastic={false}
                                 onDragEnd={() => handleRoll(i) }
                             >
                                 <Die die={ die.faces } faces={ die.dieResult }/>

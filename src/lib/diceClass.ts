@@ -10,9 +10,12 @@ export class Dice {
 
     roll(mod: number) {
         const rollResult = Math.floor(Math.random() * this.faces) + 1 ;
-        this.rolling = !this.rolling;
+        this.rolling = true;
         this.dieResult = rollResult;
         this.finalResult = this.dieResult + mod;
+        setTimeout(() => {
+            this.rolling = false;
+        },500)
         return rollResult;
     }
 }

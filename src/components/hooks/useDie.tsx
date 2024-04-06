@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
-import { randomDieFace } from '../../lib/logics';
+import { randomDieFace } from '../../lib/utils';
 
 export default function useDie(modifier: number, dice: number) {
      // State //
