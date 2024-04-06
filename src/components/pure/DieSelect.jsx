@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
@@ -14,6 +15,7 @@ const DieSelect = ({ change, className, reset }) => {
 
     return (
         <Select
+            instanceId={useId()}
             options={ diceOptions } 
             onChange={ change } 
             className={ className +' dice-select' }

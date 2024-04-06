@@ -10,10 +10,9 @@ import { Dice } from './../../lib/diceClass';
 
 const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
     // States
-    const [reset, setReset] = useState(false)
+    const [reset, setReset] = useState(false);
     const [dices, setDices] = useState([new Dice(die, mod)]);
     const [result, setResult] = useState(1);
-    const [lastResult, setLastResult] = useState(1);
 
     // Refs
     const diceNumberInputRef = useRef(null);
@@ -26,8 +25,11 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
             const newDices = Array.from({ length: value }, () => new Dice(die, mod));
             setDices(newDices);
         } else if (value > 50) {
+            e.target.value = 50;
             const newDices = Array.from({ length: 50 }, () => new Dice(die, mod));
             setDices(newDices);
+        } else {
+            e.target.value = 1;
         }
         setResult(1)
     };
@@ -43,27 +45,26 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
     }
     
     const handleRoll = (index) =>{
-        let lastResult = dices[index].result
+        let lastResult = dices[index].finalResult
         const newDices = dices.map((dice, i) => {
             if (index === i) {
-                dice.roll();
+                dice.roll(mod);
             }
             return dice;
         });
-        setLastResult(newDices[index].result)
-        setResult(result - lastResult + newDices[index].result)
+        setResult(result - lastResult + newDices[index].finalResult)
         setDices(newDices);
     }
 
     const handleRollButton = () => {
         const newDices = dices.map(dice => {
-            dice.roll();
+            dice.roll(mod);
             return dice;
         });
         setDices(newDices);
         let newResult = 0
         dices.map(die => {
-            newResult = newResult + die.result;
+            newResult = newResult + die.finalResult;
         });
         setResult(newResult);
         setLastResult(newResult);
@@ -87,8 +88,8 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
                 <div className='upper-log w-full'>
                     <div className='log-result'>
                         <h5 className='text-xl font-bold mt-1 mb-0'> Your Rolls: </h5>
-                        <h3 className='text-lg font-semibold total mt-2'> { dices.length }D{ die }: + { mod } = { result } </h3>
-                        { dices.map((die, i) => <h3 key={ i } className='text-lg font-semibold total mt-2'> D{ die.faces }: + { die.modifier } = { die.result } </h3>) } 
+                        <h3 className='text-lg font-semibold total mt-2'> { dices.length }D{ die }: { die } + { mod } = { result } </h3>
+                        { dices.map((die, i) => <h3 key={ i } className='text-lg font-semibold total mt-2'> D{ die.faces }: { die.dieResult } + { mod } = { die.finalResult } </h3>) } 
                     </div>
                 </div>
 
@@ -96,14 +97,14 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
 
                 <div className='upper-log w-full'>
                     <h5 className='text-xl font-bold m-1 mb-0'> Your Roll: </h5>
-                    <h3 className='text-lg font-semibold total mt-2'> D{ die }: + { mod } = { lastResult }  </h3>
+                    <h3 className='text-lg font-semibold total mt-2'> D{ die }: { dices[0].dieResult } + { mod } = { dices[0].finalResult }  </h3>
                 </div>
             } 
             <div className='w-full flex justify-evenly'>
                 <div className='sm:w-1/2 w-full flex sm:ms-1 my-1 p-0'>
-                    <input className='l w-4/12' type='number' ref={ diceNumberInputRef } defaultValue={ 1 } min={ 1 } max={ 50 } maxLength={ 2 } pattern="\d*" onChange={ DiceNumber }/>
-                    <DieSelect  className='w-4/12 p-0' change={ handleDieSelect } />
-                    <input className='r w-4/12' type='number' ref={ ModInputRef } defaultValue={ 0 } min={ -50 } max={ 50 } maxLength={ 2 } pattern="-?\d*" onChange={ chooseMod }/>
+                    <input className='l w-4/12' type='number' ref={ diceNumberInputRef } defaultValue={ 1 } min={ 1 } max={ 50 } maxLength={ 2 } required pattern="\d*" onChange={ DiceNumber }/>
+                    <DieSelect  className='w-4/12 p-0' change={ handleDieSelect } reset={ reset } />
+                    <input className='r w-4/12' type='number' ref={ ModInputRef } defaultValue={ 0 } min={ -50 } max={ 50 } maxLength={ 2 } required pattern="-?\d*" onChange={ chooseMod }/>
                 </div>
                 <div className='sm:w-1/2 w-10/12 flex justify-end sm:ms-2 my-1 p-0'>
                     <Bttn className='w-1/2 mx-1' click={ handleRollButton } text='Roll'/>
@@ -126,10 +127,10 @@ const DiceCounter = ( { die, mod, clear, chooseMod, chooseDie } ) => {
                                 animate={die.rolling ? {rotate: 360,transition: { ease: "easeOut", duration: 1 }} :{ rotate: 0,transition: { ease: "easeOut", duration: 1 }}}
                                 dragConstraints={ DiceContainerRef }
                                 dragTransition={{ bounceStiffness: 900, bounceDamping: 5, power: 1 }}
-                                dragElastic={false}
+                                dragElastic={0.5}
                                 onDragEnd={() => handleRoll(i) }
                             >
-                                <Die die={ die.faces } faces={ die.result }/>
+                                <Die die={ die.faces } faces={ die.dieResult }/>
                             </motion.span>
                     )}
                 </motion.div>
@@ -143,7 +144,6 @@ DiceCounter.propTypes = {
     chooseDie: PropTypes.func.isRequired,
     mod: PropTypes.number.isRequired,
     chooseMod: PropTypes.func.isRequired,
-    roll: PropTypes.any.isRequired,
     clear: PropTypes.func.isRequired,
 };
 

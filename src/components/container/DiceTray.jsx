@@ -12,14 +12,17 @@ export const DiceTray = () => {
     const chooseDie = (e) => {
         setDie(Number(e.value));
     };
-
     const chooseMod = (e) => {
         const value = Number.parseInt(e.target.value);
         if (value >= -50 && value <= 50) {
             setMod(value);
         } else if (value > 50) {
+            e.target.value = 50;
             setMod(50);
-        } else setMod(-50)
+        } else {
+            e.target.value = -50;
+            setMod(-50)
+        }
     };
 
     // Clear Button //
