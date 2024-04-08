@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto.className} antialiased w-screen`}>
+      <body className={`${noto.className} antialiased`}>
         <NavBar/>
         {children}
       </body>

@@ -1,5 +1,5 @@
 'use client'
-import { useState, context } from 'react';
+import { useState, ChangeEvent } from 'react';
 import DiceCounter from '../pure/DieCounter';
 
 export const DiceTray = () => {
@@ -9,18 +9,18 @@ export const DiceTray = () => {
     const [mod, setMod] = useState(0);
 
     // inputHandler functions //
-    const chooseDie = (e) => {
+    const chooseDie = (e: any) => {
         setDie(Number(e.value));
     };
-    const chooseMod = (e) => {
+    const chooseMod = (e: ChangeEvent<HTMLInputElement>) => {
         const value = Number.parseInt(e.target.value);
         if (value >= -50 && value <= 50) {
             setMod(value);
         } else if (value > 50) {
-            e.target.value = 50;
+            e.target.value = '50';
             setMod(50);
         } else {
-            e.target.value = -50;
+            e.target.value = '-50';
             setMod(-50)
         }
     };

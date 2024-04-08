@@ -11,7 +11,13 @@ const diceOptions = [
     { value: '20', label: 'D20' }
   ]
 
-const DieSelect = ({ change, className, reset }) => {
+const DieSelect = ({
+     change, 
+     className, 
+    } : {
+        change: (e: any) => void,
+        className: string,
+    }) => {
 
     return (
         <Select
@@ -30,12 +36,5 @@ const DieSelect = ({ change, className, reset }) => {
         />
     );
 }
-
-
-DieSelect.propTypes = {
-    change: PropTypes.func.isRequired,
-    className: PropTypes.string.isRequired,
-};
-
 
 export default DieSelect;

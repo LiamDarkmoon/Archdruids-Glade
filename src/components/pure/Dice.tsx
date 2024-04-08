@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types';
 import { d20, d12, d10, d8, d6, d4 } from '../../lib/Dice.enum';
 
-export function D20( { className, fillColor, faces} ) {
+export function D20( {
+   className, 
+   fillColor, 
+   faces
+  } : {
+    className?: string,
+    fillColor?: string,
+    faces: number,
+  } ) {
 
     return (
       <svg
@@ -15,7 +23,15 @@ export function D20( { className, fillColor, faces} ) {
     );
   }
 
-export function D12( { className, fillColor, faces, rolling } ) {
+export function D12( {
+  className, 
+  fillColor, 
+  faces
+  } : {
+    className?: string,
+    fillColor?: string,
+    faces: number,
+  } ) {
 
     return (
       <svg
@@ -29,7 +45,15 @@ export function D12( { className, fillColor, faces, rolling } ) {
     );
   }
 
-  export function D10({ className, fillColor, faces, rolling }) {
+  export function D10( {
+    className, 
+    fillColor, 
+    faces
+   } : {
+     className?: string,
+     fillColor?: string,
+     faces: number,
+   } ) {
 
     return (
       <svg
@@ -43,7 +67,15 @@ export function D12( { className, fillColor, faces, rolling } ) {
     );
   }
 
-  export function D8({ className, fillColor, faces, rolling }) {
+  export function D8( {
+    className, 
+    fillColor, 
+    faces
+   } : {
+     className?: string,
+     fillColor?: string,
+     faces: number,
+   } ) {
 
     return (
       <svg
@@ -57,7 +89,15 @@ export function D12( { className, fillColor, faces, rolling } ) {
     );
   }
 
-  export function D6({ className, fillColor, faces, rolling }) {
+  export function D6( {
+    className, 
+    fillColor, 
+    faces
+   } : {
+     className?: string,
+     fillColor?: string,
+     faces: number,
+   } ) {
   
   return (
     <svg
@@ -71,7 +111,15 @@ export function D12( { className, fillColor, faces, rolling } ) {
   );
 }
 
-export function D4({ className, fillColor, faces, rolling }) {
+export function D4( {
+  className, 
+  fillColor, 
+  faces
+ } : {
+   className?: string,
+   fillColor?: string,
+   faces: number,
+ } ) {
   
   return (
     <svg
@@ -84,18 +132,5 @@ export function D4({ className, fillColor, faces, rolling }) {
     </svg>
   );
 }
-
-
- D20.propTypes,
- D12.propTypes,
- D10.propTypes,
- D8.propTypes,
- D6.propTypes,
- D4.propTypes = {
-    className: PropTypes.string,
-    fillColor: PropTypes.string,
-    faces: PropTypes.number.isRequired,
- };
-
  
 

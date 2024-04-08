@@ -3,8 +3,8 @@ import { DiceTray } from './../components/container/DiceTray';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <section className="bg-autumn bg-no-repeat bg-cover flex flex-wrap w-screen items-center justify-evenly pt-28 sm:py-20">
+    <main className="flex w-full min-h-screen flex-col items-center justify-between">
+      <section className="bg-autumn bg-no-repeat bg-cover flex flex-wrap w-full items-center justify-evenly pt-28 sm:py-20">
         <div className="w-full sm:w-2/5 p-5  text-emerald-50">
           <h5 className="text-sm pb-2 mb-2 border-b text-emerald-400 border-emerald-400">Welcome to the</h5>
           <h1 className="sm:text-6xl text-4xl font-bold mb-3">Archdruid&apos;s Glade</h1>

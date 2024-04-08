@@ -4,7 +4,7 @@ import Image from "next/image";
 const NavBar = () => {
 
     return (
-        <header className='absolute top-0 left-0 right-0 py-5 px-14 text-emerald-50 w-screen'>
+        <header className='absolute top-0 left-0 right-0 py-5 px-14 text-emerald-50'>
             <nav className="flex sm:justify-between justify-center items-center">
                 <Link
                     href="/"
@@ -35,6 +35,5 @@ const NavBar = () => {
         </header>
     );
 }
-
 
 export default NavBar;

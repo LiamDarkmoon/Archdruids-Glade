@@ -1,21 +1,19 @@
 export class Dice {
     faces: number = 20;
+    mod: number = 0; // modifier
     dieResult: number = 1;
-    finalResult: number = 1;
+    finalResult: number = this.dieResult + this.mod;
     rolling: boolean = false;
-    
+        
     constructor(faces: number) {
         this.faces = faces;
     }
 
-    roll(mod: number) {
+    roll() {
         const rollResult = Math.floor(Math.random() * this.faces) + 1 ;
-        this.rolling = true;
+        this.rolling = !this.rolling;
         this.dieResult = rollResult;
-        this.finalResult = this.dieResult + mod;
-        setTimeout(() => {
-            this.rolling = false;
-        },500)
+        this.finalResult = this.dieResult + this.mod;
         return rollResult;
     }
 }
