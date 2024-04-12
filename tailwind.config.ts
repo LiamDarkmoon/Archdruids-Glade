@@ -13,6 +13,7 @@ const config: Config = {
         autumn:  "url('/autumn.jpg')",
         mountain:  "url('/mountain.jpg')",
         jungle:  "url('jungle.jpg')",
+        map: "url('/assets/maps/map.jpg')",
       },
     },
   },

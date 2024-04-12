@@ -1,45 +1,57 @@
-import { ChangeEvent, useState } from 'react';
+'use client'
+import { ChangeEvent, useState, useEffect, useRef } from 'react';
+import { motion, Reorder } from "framer-motion";
 
 const Board = () => {
+    // States
+    const [board, setBoard] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const [boardSize, setBoardSize] = useState(200);
 
-    const [visible, setVisible] = useState(false);
-    const [boardSize, setBoardSize] = useState(150);
-    const [show, setShow] = useState(false);
+    // Refs
+    const boardRef = useRef<HTMLDivElement>(null)
 
-    // generate board //
-    let board = [];
-
-    for (let y = 0; y < boardSize; y++) {
-        board.push(<div className='tile'></div>)
-    }
+    useEffect(() => {
+        // generate board based on the board size//
+        let newBoard = []
+        for (let index = 0; index < boardSize; index++) {
+            newBoard.push(index)
+        }
+        setBoard(newBoard)
+    }, [boardSize])
 
     // handle input value func //
     const getBoard = (e: ChangeEvent<HTMLFormElement>) => {
-        setBoardSize(e.target.value)      
+        setBoardSize(e.target.value)
     }
 
-    // handle submit func //
-    const showBoard = (e: ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        getBoard(e)
-    }
 
     return (
-
-        <div className='col'>
-             <div id='board' className='col container-fluid text-center'>
-                <h1 className='m-3'> This is your game board </h1>
+        <>
+             <div className='flex flex-col w-full items-center pt-24'>
+                <h1 className='text-3xl font-bold m-4'> This is your game board </h1>
                  {
-                    show ?
-
-                <div id='map' className='row justify-content-center m-4'>
-                    { board }
+                    board &&
+                <div id='board' ref={boardRef} className='flex flex-col items-center w-full p-8'>
+                    <Reorder.Group 
+                        values={board} 
+                        onReorder={setBoard}
+                        className='grid grid-cols-10 gap-2 w-10/12 h-full bg-emerald-400 p-5'
+                    >
+                        {board.map((item, index) => (
+                            <Reorder.Item
+                                whileHover={{ scale: 1.1 } }
+                                value={item} 
+                                key={item}
+                                className='border rounded-md border-red-800 m-auto text-center w-full h-[104.7px] hover:border-red-50'
+                            >
+                            { index }
+                            </Reorder.Item>
+                        ))}
+                    </Reorder.Group>
                 </div>
-                :
-                null
                 }
             </div>
-        </div>
+        </>
     );
 }
 

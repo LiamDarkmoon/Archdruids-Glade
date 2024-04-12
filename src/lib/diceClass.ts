@@ -5,8 +5,9 @@ export class Dice {
     finalResult: number = this.dieResult + this.mod;
     rolling: boolean = false;
         
-    constructor(faces: number) {
+    constructor(faces: number, mod: number) {
         this.faces = faces;
+        this.mod = mod;
     }
 
     roll() {

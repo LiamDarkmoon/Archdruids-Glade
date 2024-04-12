@@ -12,20 +12,23 @@ const diceOptions = [
   ]
 
 const DieSelect = ({
+     value,
      change, 
      className, 
     } : {
+        value: number
         change: (e: any) => void,
         className: string,
     }) => {
 
     return (
         <Select
+            name="dice"
             instanceId={useId()}
             options={ diceOptions } 
             onChange={ change } 
             className={ className +' dice-select' }
-            defaultValue={ diceOptions[5] }
+            value={diceOptions.find(o => o.value === value.toString())} // TODO: fix this
             isSearchable={ false }
             unstyled
             classNames={{ 
