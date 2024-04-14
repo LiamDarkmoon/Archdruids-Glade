@@ -6,11 +6,7 @@ import Card from "./Card";
 export default function CardsCarousel() {
     const [cards, setCards] = useState([1, 2, 3 ,4 ,5])
     const [width, setWidth] = useState()
-    const CarouselRef = useRef<HTMLTableSectionElement>(null)
 
-   /*  useEffect(() => {
-        setWidth(CarouselRef.current?.clientWidth)
-    }, [CarouselRef]) */
 
   return (
     <section className="w-full h-screen p-6">
