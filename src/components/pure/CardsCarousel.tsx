@@ -15,7 +15,7 @@ export default function CardsCarousel() {
   return (
     <section className="w-full h-screen p-6">
         <Reorder.Group 
-            axis={ CarouselRef.current?.clientWidth < 450 ? "y" : "x"}
+            axis="x"
             values={cards} 
             onReorder={setCards}
             className="flex flex-wrap justify-center sm:grid grid-cols-5 gap-2"
