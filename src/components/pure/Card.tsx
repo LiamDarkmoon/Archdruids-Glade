@@ -29,7 +29,7 @@ const Card = ({
             !isHover ?
         <motion.div
             onMouseOver={ () => setIsHover(true) }
-            className={ className + " relative h-[500px] w-[250px] flex flex-col items-center justify-end rounded-md bg-opacity-45"}
+            className={ className + " relative h-[400px] w-[250px] flex flex-col items-center justify-end rounded-md bg-opacity-45"}
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
             <CardBody className="absolute bottom-0 h-1/3 rounded-b-lg bg-emerald-950 bg-opacity-80 text-emerald-50 p-2">
