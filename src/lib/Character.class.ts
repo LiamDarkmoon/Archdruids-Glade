@@ -2,7 +2,7 @@ export class Character {
     name = 'Liam Darkmoon';
     class = 'Druid';
     race = 'Werewolf';
-    backgroud = 'Hermit';
+    background = 'Hermit';
     alignment = 'Neutral Chaotic';
     stats = [18, 16, 16, 12, 20, 14];
 
@@ -10,21 +10,21 @@ export class Character {
         {name, 
         clas, 
         race, 
-        backgroud, 
+        background, 
         alignment, 
         stats
     } : {
         name: string,
         clas: string,
         race: string,
-        backgroud: string,
+        background: string,
         alignment: string,
         stats: number[] // [str, dex, con, int, wis, cha]
     }) {
         this.name = name;
         this.class = clas;
         this.race = race;
-        this.backgroud = backgroud;
+        this.background = background;
         this.alignment = alignment;
         this.stats = stats;
     }

@@ -1,5 +1,4 @@
 import { useId } from 'react';
-import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 const diceOptions = [
@@ -18,7 +17,7 @@ const DieSelect = ({
     } : {
         value: number
         change: (e: any) => void,
-        className: string,
+        className?: string,
     }) => {
 
     return (

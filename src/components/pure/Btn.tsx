@@ -1,17 +1,17 @@
 import { Children } from "react";
 
-const Bttn = ({
+const Button = ({
      className, 
+     children, 
      click, 
-     children 
     } : {
-        className: string,
-        click: () => void,
+        className?: string,
         children: string,
+        click: () => void,
     }) => {
     return (
         <button className={ className + ' bttn' } type="submit" onClick={ click }> { children } </button>
     );
 };
 
-export default Bttn;
+export default Button;

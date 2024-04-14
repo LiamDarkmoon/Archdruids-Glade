@@ -64,10 +64,12 @@
   font-weight: 500;
 }
 .dicetray .die input[type=number], .dicetray .die .dice-select, .dicetray .die .dice-menu {
+  height: 40px;
   text-align: center;
   border: 1px solid #432818;
 }
 .dicetray .die .dice-select, .dicetray .die .dice-option {
+  height: 40px;
   background-color: white;
 }
 .dicetray .die .dice-option:hover {
@@ -106,6 +108,7 @@
 }
 
 .bttn {
+  height: 40px;
   border: 1px solid #da2d28;
   padding: 8px 16px;
   border-radius: 4px;

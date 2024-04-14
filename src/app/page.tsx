@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { DiceTray } from './../components/container/DiceTray';
-import Board from './../components/container/Board';
-import Card from "@/components/pure/Card";
-import { motion } from 'framer-motion';
+import CardsCarousel from "@/components/pure/CardsCarousel";
 
 
 export default function Home() {
@@ -21,40 +19,7 @@ export default function Home() {
           <DiceTray/>
         </div>
       </section>
-      <section className="w-full h-screen p-6">
-        <div className="grid grid-cols-5 gap-2 bg-emerald-100">
-          <Card 
-            title="Moon's Archdruid"
-            text="Powerfull as wise the archdruid looks over the life on the glade like a father over his child" 
-            img="/assets/imgs/Archdruid.png"
-            className="hover:scale-110 transition-all duration-300 ease-in-out hover:Z-10"
-          />
-          <Card 
-            title="Moon's Archdruid"
-            text="Powerfull as wise the archdruid looks over the life on the glade like a father over his child" 
-            img="/assets/imgs/Archdruid.png"
-            className="hover:scale-110 transition-all duration-300 ease-in-out hover:Z-10"
-          />
-          <Card 
-            title="Moon's Archdruid"
-            text="Powerfull as wise the archdruid looks over the life on the glade like a father over his child" 
-            img="/assets/imgs/Archdruid.png"
-            className="hover:scale-110 transition-all duration-300 ease-in-out hover:Z-10"
-          />
-          <Card 
-            title="Moon's Archdruid"
-            text="Powerfull as wise the archdruid looks over the life on the glade like a father over his child" 
-            img="/assets/imgs/Archdruid.png"
-            className="hover:scale-110 transition-all duration-300 ease-in-out hover:Z-10"
-          />
-          <Card 
-            title="Moon's Archdruid"
-            text="Powerfull as wise the archdruid looks over the life on the glade like a father over his child" 
-            img="/assets/imgs/Archdruid.png"
-            className="hover:scale-110 transition-all duration-300 ease-in-out hover:Z-10"
-          />
-        </div>
-      </section>
+      <CardsCarousel/>
     </main>
   );
 }
