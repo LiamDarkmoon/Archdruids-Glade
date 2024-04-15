@@ -5,16 +5,27 @@ import Card from "./Card";
 
 export default function CardsCarousel() {
     const [cards, setCards] = useState([1, 2, 3 ,4 ,5])
-    const [width, setWidth] = useState()
+    const [width, setWidth] = useState(1000)
+
+    const carouselRef = useRef<HTMLTableSectionElement>(null)
+
+    useEffect(() => {
+        if(carouselRef.current) {
+            setWidth(carouselRef.current?.clientWidth)
+        }
+    }, [carouselRef])
 
 
   return (
-    <section className="w-full h-screen p-6">
+    <section 
+        ref={ carouselRef } 
+        className="w-full h-screen p-6"
+    >
         <Reorder.Group 
-            axis="x"
+            axis={ width > 500 ? "x" : "y"}
             values={cards} 
             onReorder={setCards}
-            className="flex flex-wrap justify-center sm:grid grid-cols-5 gap-2"
+            className="flex flex-wrap justify-center sm:grid grid-cols-5 sm:gap-2 gap-4"
         >
             {cards.map((card, index) => (
                 <Reorder.Item
