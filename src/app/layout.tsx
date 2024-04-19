@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { noto } from "@/lib/fonts";
 import NavBar from './../components/container/NavBar';
 import "./globals.css";
+import { CharactersProvider } from "@/lib/contexts/chractersContext";
 
 export const metadata: Metadata = {
   title: "Archdruid's Glade",
@@ -15,10 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto.className} antialiased`}>
-        <NavBar/>
-        {children}
-      </body>
+      <CharactersProvider>
+        <body className={`${noto.className} antialiased`}>
+          <NavBar/>
+          {children}
+        </body>
+      </CharactersProvider>
     </html>
   );
 }

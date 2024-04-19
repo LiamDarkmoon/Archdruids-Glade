@@ -1,10 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
 import { Reorder } from "framer-motion";
+import { characters, quotes, imgs } from "@/lib/placeholders";
 import Card from "./Card";
 
 export default function CardsCarousel() {
-    const [cards, setCards] = useState([1, 2, 3 ,4 ,5])
+    const [cards, setCards] = useState([0, 1, 2, 3, 4])
     const [width, setWidth] = useState(1000)
 
     const carouselRef = useRef<HTMLTableSectionElement>(null)
@@ -18,7 +19,7 @@ export default function CardsCarousel() {
 
   return (
     <section 
-        ref={ carouselRef } 
+        ref={ carouselRef }
         className="w-full h-screen p-6"
     >
         <Reorder.Group 
@@ -30,12 +31,13 @@ export default function CardsCarousel() {
             {cards.map((card, index) => (
                 <Reorder.Item
                     value={card}
-                    key={card}                
+                    key={card}
                 >
                 <Card 
-                    title={`Card ${index}`}
-                    text="Powerfull as wise the archdruid looks over the life on the glade like a father over his child" 
-                    img="/assets/imgs/Archdruid.png"
+                    title={ characters[card].name }
+                    text={ quotes[card] } 
+                    img={ imgs[card] }
+                    character={ characters[card] }
                 />
                 </Reorder.Item>
             ))}

@@ -1,6 +1,6 @@
 import { useState, useContext, ChangeEvent } from 'react';
-import { Dice } from '../../lib/diceClass';
 import { DiceContext, DiceContextType } from '@/lib/contexts/DiceContext';
+import { Dice } from '../../lib/diceClass';
 
 
 
@@ -14,6 +14,7 @@ export default function useDice() {
     // States
     const { dices, setDices } = diceContext as DiceContextType;
     const [result, setResult] = useState(1);
+    const [newDices, setNewDices] = useState(Array.from({ length: dices.Dices.length }, () => 20));
 
     const HandleDiceNumber = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target) {
@@ -40,10 +41,17 @@ export default function useDice() {
     // Choose Die //
     const handleDieSelect = (e: any) => {
         const value = Number.parseInt(e.value);
-        const newDices = dices.Dices.map(dice => {
+        /* const newDices = dices.Dices.map(dice => {
             dice.faces = value;
             dice.dieResult = 1;
             return dice;
+        }) */
+        const newDices = dices.Dices.map((dice, index) => {
+            if(index === dices.Dices.length - 1){
+                dice.faces = value;
+                dice.dieResult = 1;
+                return dice;
+            } else return dice;
         })
         setDices(prev => ({
             ...prev,

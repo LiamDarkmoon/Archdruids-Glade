@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { DiceTray } from './../components/container/DiceTray';
 import CardsCarousel from "@/components/pure/CardsCarousel";
-
 
 export default function Home() {
   return (
