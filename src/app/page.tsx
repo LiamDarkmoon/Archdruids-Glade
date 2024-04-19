@@ -1,6 +1,5 @@
 import { DiceTray } from './../components/container/DiceTray';
 import CardsCarousel from "@/components/pure/CardsCarousel";
-import CharacterForm from './../components/pure/forms/CharacterForm';
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         </div>
       </section>
       <CardsCarousel/>
-      <CharacterForm/>
     </main>
   );
 }
