@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { charactersContext } from './../contexts/chractersContext';
 
-export default function useColor(){
+/* export default function useColor(){
     const charsContext = useContext(charactersContext);
 
     if (!charsContext) {
@@ -20,13 +20,7 @@ export default function useColor(){
         "brown": "#A52A2A",
         "black": "#000000",
     }
-
-
-
-        if(char.clas === "sorcerer"){
-            setColor(colors.sorcerer)
-        } else setColor(colors.druid)
  
 
     return { color };
-}
+} */
