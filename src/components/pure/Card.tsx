@@ -7,7 +7,6 @@ import CardTitle from '../common/CardTitle';
 import { motion } from 'framer-motion';
 import Button from './Btn';
 import { character } from '../../lib/Types';
-import useColor from '@/lib/hooks/useColor';
 
 const Card = ({ 
     title, 
@@ -24,7 +23,6 @@ const Card = ({
 }) => {
 
     const [isHover, setIsHover] = useState(false);
-    const color = useColor();
 
     return (
         <>
