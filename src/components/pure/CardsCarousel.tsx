@@ -18,9 +18,9 @@ export default function CardsCarousel() {
 
 
   return (
-    <section 
+    <article 
         ref={ carouselRef }
-        className="w-full h-screen p-6"
+        className="w-full p-6"
     >
         <Reorder.Group 
             axis={ width > 500 ? "x" : "y"}
@@ -32,6 +32,10 @@ export default function CardsCarousel() {
                 <Reorder.Item
                     value={card}
                     key={card}
+                    drag
+                    dragDirectionLock
+                    dragElastic={ false }
+                    dragConstraints={ carouselRef}
                 >
                 <Card 
                     title={ characters[card].name }
@@ -42,6 +46,6 @@ export default function CardsCarousel() {
                 </Reorder.Item>
             ))}
         </Reorder.Group>
-    </section>
+    </article>
   )
 }
