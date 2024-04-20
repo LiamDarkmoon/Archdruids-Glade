@@ -86,7 +86,7 @@ export const quotes = [
 
 export const imgs = [
     "/assets/imgs/Archdruid.png",
-    "/assets/imgs/Aluhen.jpg",
+    "/assets/imgs/aluhen.jpg",
     "/assets/imgs/norros.jpg",
     "/assets/imgs/regan.jpg",
     "/assets/imgs/thuran.jpg",
