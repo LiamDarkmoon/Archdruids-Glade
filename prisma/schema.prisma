@@ -1,0 +1,33 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  name   String   @unique
+  class    String?
+  race    String
+  background   String
+  alignment String
+  str Int
+  dex Int
+  con Int
+  int Int
+  wis Int
+  cha Int
+  level Int
+  armorClass Int
+  initiative Int
+  speed Int
+  hitPoints Int
+  hitDice String
+  proficiencyBonus Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

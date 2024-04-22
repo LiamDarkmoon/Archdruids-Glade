@@ -5,7 +5,7 @@ import { characters, quotes, imgs } from "@/lib/placeholders";
 import Card from "./Card";
 
 export default function CardsCarousel() {
-    const [cards, setCards] = useState([0, 1, 2, 3, 4])
+    const [cards, setCards] = useState(Array.from({ length: characters.length }, (_, i) => i))
     const [width, setWidth] = useState(1000)
 
     const carouselRef = useRef<HTMLTableSectionElement>(null)
