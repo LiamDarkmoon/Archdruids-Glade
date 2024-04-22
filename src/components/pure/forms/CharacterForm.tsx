@@ -25,7 +25,7 @@ const CharacterForm = () => {
     return (
         <form
             action={ dispatch } 
-            className='flex flex-col gap-2 w-full sm:w-1/2 border rounded-lg mx-auot p-8 bg-amber-100 text-red-800'
+            className='flex flex-col gap-2 max-w-full sm:w-1/2 border rounded-lg mx-auot p-8 bg-amber-100 text-red-800'
         >
             <h1 className='text-3xl font-bold text-center mb-4'>Create your character</h1>
 
@@ -84,7 +84,9 @@ const CharacterForm = () => {
             >
                 Create Character
             </Button>
-            { state?.message && state.message }
+            <p className="mt-2 mx-auto text-sm text-warning">
+                { state?.message && state.message }
+            </p>
         </form>
     );
 }

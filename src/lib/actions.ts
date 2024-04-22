@@ -9,27 +9,27 @@ const characterSchema = z.object({
       .min(4,{message: 'El nombre de usuario debe tener al menos 4 caracteres.'})
       .max(20,{message: 'El nombre de usuario es muy largo.'}),
         str: number({required_error: 'Por favor ingresa el valor'})
-        .min(1)
-        .max(2,{message: 'El valor debe ser entre 8 y 20.'}),
+        .min(8, { message: 'El valor debe ser mayor de 8.' })
+        .max(20,{message: 'El valor debe ser menor de 20.'}),
         dex: number({required_error: 'Por favor ingresa el valor'})
-        .min(1)
-        .max(2,{message: 'El valor debe ser entre 8 y 20.'}),
+        .min(8, { message: 'El valor debe ser mayor de 8.' })
+        .max(20,{message: 'El valor debe ser menor de 20.'}),
         con: number({required_error: 'Por favor ingresa el valor'})
-        .min(1)
-        .max(2,{message: 'El valor debe ser entre 8 y 20.'}),
+        .min(8, { message: 'El valor debe ser mayor de 8.' })
+        .max(20,{message: 'El valor debe ser menor de 20.'}),
         int: number({required_error: 'Por favor ingresa el valor'})
-        .min(1)
-        .max(2,{message: 'El valor debe ser entre 8 y 20.'}),
+        .min(8, { message: 'El valor debe ser mayor de 8.' })
+        .max(20,{message: 'El valor debe ser menor de 20.'}),
         wis: number({required_error: 'Por favor ingresa el valor'})
-        .min(1)
-        .max(2),
+        .min(8, { message: 'El valor debe ser mayor de 8.' })
+        .max(20,{message: 'El valor debe ser menor de 20.'}),
         cha: number({required_error: 'Por favor ingresa el valor'})
-        .min(1)
-        .max(2,{message: 'El valor debe ser entre 8 y 20.'}),
+        .min(8, { message: 'El valor debe ser mayor de 8.' })
+        .max(20,{message: 'El valor debe ser menor de 20.'}),
   });
 
   export async function createCharacter(prevState: State | undefined, formData: FormData){
-    console.log((Number(formData.get('cha'))))
+    console.log('charisma',Number(formData.get('cha')))
     
     const validate = characterSchema.safeParse({
         name: formData.get('name'),
@@ -47,17 +47,18 @@ const characterSchema = z.object({
           errors: validate.error.flatten().fieldErrors,
           message: 'campos invalidos no se pudo crear personaje.',
         };
-    } else {
-        const character = validate.data;
-        alert('Personaje creado con exito.')
-        return {
-            message: 'Personaje creado con exito.',
-            character: character,
-        };
     }
-    /* const newCharacter = await prisma.user.create({
+    const character = validate.data;
+
+   /*  const newCharacter = await prisma.user.create({
         data: {
-            name: character.name,
-        }
+            character.name,
+            character.str,
+            character.dex,
+            character.con,
+            character.int,
+            character.wis,
+            character.cha,
+     }
     }) */
   } 
