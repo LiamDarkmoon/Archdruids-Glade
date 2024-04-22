@@ -62,20 +62,20 @@ const CharacterForm = () => {
 
             <div className='w-full flex flex-col gap-1 px-2'>
                 <label className='text-xl font-bold self-center' htmlFor='stats'>Stats</label>
-                <div className='flex gap-1 items-center'>
+                <div className='w-full flex gap-1 items-center'>
                     {stats.map((stat, index) =>
-                    <>
-                        <label key={index+6} htmlFor={stat}>{stat}</label>
-                        <input key={index} className='py-1 px-2 rounded aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border border-red-800' id={stat} name={stat} type='number' defaultValue={10} min='8' max='20' pattern='[0-9]*' step='1' placeholder='10' />
-                    </>
+                    <div key={index}>
+                        <label htmlFor={stat}>{stat}</label>
+                        <input className='py-1 px-2 rounded aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border border-red-800' id={stat} name={stat} type='number' defaultValue={10} min='8' max='20' pattern='[0-9]*' step='1' placeholder='10' />
+                    </div>
                     )}
-                    {state?.errors?.str &&
+                </div>
+                {state?.errors?.str &&
                         state.errors.str.map((error: string) => (
                             <p className="mt-2 mx-auto text-sm text-warning" key={error}>
                             {error}
                             </p>
-                    ))}
-                </div>
+                ))}
             </div>
 
             <Button 
