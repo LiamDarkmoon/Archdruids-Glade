@@ -13,10 +13,11 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
     const carouselRef = useRef<HTMLTableSectionElement>(null)
 
     useEffect(() => {
-        console.log(cards)
+        console.log(cards.length)
         if(char) {
            setChars(char.slice(-5))
         }
+        setCards(Array.from({ length: chars.length }, (_, i) => i))
         if(carouselRef.current) {
             setWidth(carouselRef.current?.clientWidth)
         }
@@ -41,7 +42,7 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
                     drag
                     dragDirectionLock
                     dragElastic={ false }
-                    dragConstraints={ carouselRef}
+                    dragConstraints={ carouselRef }
                 >
                 <Card 
                     title={ chars[index].name }
