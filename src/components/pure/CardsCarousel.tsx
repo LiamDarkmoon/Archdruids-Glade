@@ -5,7 +5,7 @@ import { characters, quotes, imgs } from "@/lib/placeholders";
 import Card from "./Card";
 import { character } from '../../lib/Types';
 
-export default function CardsCarousel({ char } : { char: character | null }) {
+export default function CardsCarousel({ char } : { char: character[] | null }) {
     const [chars, setChars] = useState(characters);
     const [cards, setCards] = useState(Array.from({ length: chars.length }, (_, i) => i))
     const [width, setWidth] = useState(1000)
@@ -13,13 +13,14 @@ export default function CardsCarousel({ char } : { char: character | null }) {
     const carouselRef = useRef<HTMLTableSectionElement>(null)
 
     useEffect(() => {
+        console.log(char)
         if(char) {
-           setChars(prevState => [...prevState, char])
+           setChars(char.slice(-5))
         }
         if(carouselRef.current) {
             setWidth(carouselRef.current?.clientWidth)
         }
-    }, [])
+    }, [char])
 
 
   return (
@@ -35,8 +36,8 @@ export default function CardsCarousel({ char } : { char: character | null }) {
         >
             {chars.map((char, index) => (
                 <Reorder.Item
-                    value={cards[index]}
-                    key={cards[index]}
+                    value={char.id}
+                    key={char.id}
                     drag
                     dragDirectionLock
                     dragElastic={ false }

@@ -3,6 +3,7 @@ import z, { number } from 'zod';
 import { State } from './Types';
 import prisma  from './db';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 const characterSchema = z.object({
     name: z.string({required_error: 'Por favor ingresa un nombre.'})
@@ -85,4 +86,38 @@ const characterSchema = z.object({
         message: 'error en la base de datos no se pudo crear el personaje',
       }
     }
-}
+  redirect('/')
+  }
+
+  export async function getCharacter(id: number){
+    try {
+      const character = await prisma.character.findUnique({
+        where: {
+          id: id,
+        },
+      })
+      return character
+    } catch (error) {
+      return {
+        message: 'error en la base de datos no se pudo obtener el personaje',
+      }
+    }
+  }
+
+  export async function deleteCharacter(id: number ){
+    try {
+      const character = await prisma.character.delete({
+        where: {
+          id: id,
+        },
+      })
+      revalidatePath('/')
+      return {
+        message: 'Personaje eliminado con exito',
+      }
+    } catch (error) {
+      return {
+        message: 'error en la base de datos no se pudo obtener el personaje',
+      }
+    }
+  }

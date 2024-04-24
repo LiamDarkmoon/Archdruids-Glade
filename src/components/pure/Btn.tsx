@@ -7,7 +7,7 @@ const Button = ({
     } : {
         className?: string,
         children: string,
-        click: () => void,
+        click: () => void | Promise<void>,
     }) => {
     return (
         <button className={ className + ' bttn' } type="submit" onClick={ click }> { children } </button>

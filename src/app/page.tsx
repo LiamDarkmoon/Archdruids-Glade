@@ -6,11 +6,7 @@ import Image from 'next/image';
 import autumn from '../../public/autumn.jpg';
 
 export default async function Home() {
-    const newChar = await prisma.character.findFirst({
-        orderBy : {
-            id : 'desc'
-        }
-    })
+    const newChar = await prisma.character.findMany();
 
   return (
     <main className="relative flex w-full min-h-screen flex-col items-center justify-between">
