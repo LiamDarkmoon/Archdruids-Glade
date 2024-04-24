@@ -2,6 +2,7 @@
 import z, { number } from 'zod';
 import { State } from './Types';
 import prisma  from './db';
+import { revalidatePath } from 'next/cache';
 
 const characterSchema = z.object({
     name: z.string({required_error: 'Por favor ingresa un nombre.'})
@@ -73,6 +74,7 @@ const characterSchema = z.object({
               cha: cha,
           },
       })
+      revalidatePath('/', 'page')
 
       return {
         message: 'Personaje creado con exito',
@@ -83,5 +85,4 @@ const characterSchema = z.object({
         message: 'error en la base de datos no se pudo crear el personaje',
       }
     }
-
 }
