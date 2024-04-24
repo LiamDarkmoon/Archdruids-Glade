@@ -3,18 +3,23 @@ import { useEffect, useRef, useState } from "react";
 import { Reorder } from "framer-motion";
 import { characters, quotes, imgs } from "@/lib/placeholders";
 import Card from "./Card";
+import { character } from '../../lib/Types';
 
-export default function CardsCarousel() {
-    const [cards, setCards] = useState(Array.from({ length: characters.length }, (_, i) => i))
+export default function CardsCarousel({ char } : { char: character | null }) {
+    const [chars, setChars] = useState(characters);
+    const [cards, setCards] = useState(Array.from({ length: chars.length }, (_, i) => i))
     const [width, setWidth] = useState(1000)
 
     const carouselRef = useRef<HTMLTableSectionElement>(null)
 
     useEffect(() => {
+        if(char) {
+           setChars(prevState => [...prevState, char])
+        }
         if(carouselRef.current) {
             setWidth(carouselRef.current?.clientWidth)
         }
-    }, [carouselRef])
+    }, [])
 
 
   return (
@@ -24,24 +29,24 @@ export default function CardsCarousel() {
     >
         <Reorder.Group 
             axis={ width > 500 ? "x" : "y"}
-            values={cards} 
+            values={cards}
             onReorder={setCards}
             className="flex flex-wrap justify-center sm:grid grid-cols-5 sm:gap-2 gap-4"
         >
-            {cards.map((card, index) => (
+            {chars.map((char, index) => (
                 <Reorder.Item
-                    value={card}
-                    key={card}
+                    value={cards[index]}
+                    key={cards[index]}
                     drag
                     dragDirectionLock
                     dragElastic={ false }
                     dragConstraints={ carouselRef}
                 >
                 <Card 
-                    title={ characters[card].name }
-                    text={ quotes[card] } 
-                    img={ imgs[card] }
-                    character={ characters[card] }
+                    title={ char.name }
+                    text={ quotes[index] } 
+                    img={ imgs[index] }
+                    character={ char }
                 />
                 </Reorder.Item>
             ))}

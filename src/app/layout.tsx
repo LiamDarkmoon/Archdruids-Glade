@@ -16,12 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <CharactersProvider>
         <body className={`${noto.className} antialiased`}>
+        <CharactersProvider>
           <NavBar/>
           {children}
+        </CharactersProvider>
         </body>
-      </CharactersProvider>
     </html>
   );
 }

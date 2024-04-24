@@ -33,7 +33,7 @@ const Card = ({
             className={ className + " relative h-[375px] w-[250px] flex flex-col items-center justify-end rounded-lg bg-opacity-45" }
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
-            <CardBody className={"absolute bottom-0 h-1/3 rounded-b-lg bg-emerald-950 bg-opacity-80 text-emerald-50 p-4"}>
+            <CardBody className={"absolute bottom-0 h-1/3 rounded-b-lg bg-amber-950 bg-opacity-80 text-amber-50 p-4"}>
                 <CardTitle className="text-lg font-bold"> { title } </CardTitle>
                 <CardText className="text-sm font-medium italic"> { text } </CardText>
             </CardBody>
@@ -74,10 +74,13 @@ const Card = ({
                         </span>
                     </CardText>
                     <CardText className="font-semibold text-rose-950 my-1">
-                        Stats:
-                        {Object.entries(character.stats).map(([key, value]) => 
-                            <span className="text-sm font-medium italic" key={ key }> { key }: { value } </span>
-                        )}
+                        Stats: 
+                            <span className="text-sm font-medium italic"> { character.str } </span>
+                            <span className="text-sm font-medium italic"> { character.dex } </span>
+                            <span className="text-sm font-medium italic"> { character.con } </span>
+                            <span className="text-sm font-medium italic"> { character.int } </span>
+                            <span className="text-sm font-medium italic"> { character.wis } </span>
+                            <span className="text-sm font-medium italic"> { character.cha } </span>
                     </CardText>
                 </div>
                 <Button click={()=> console.log("clicked")}>Show more</Button>

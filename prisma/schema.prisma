@@ -1,17 +1,18 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model User {
+model Character {
   id      Int      @id @default(autoincrement())
+  lvl Int
   name   String   @unique
-  class    String?
+  clas    String
   race    String
   background   String
   alignment String
@@ -21,13 +22,7 @@ model User {
   int Int
   wis Int
   cha Int
-  level Int
-  armorClass Int
-  initiative Int
-  speed Int
-  hitPoints Int
-  hitDice String
-  proficiencyBonus Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
+
+
+

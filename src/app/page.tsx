@@ -1,10 +1,17 @@
 import { DiceTray } from './../components/container/DiceTray';
 import CardsCarousel from "@/components/pure/CardsCarousel";
 import CharacterForm from './../components/pure/forms/CharacterForm';
+import prisma from '@/lib/db'
 import Image from 'next/image';
 import autumn from '../../public/autumn.jpg';
 
-export default function Home() {
+export default async function Home() {
+    const newChar = await prisma.character.findFirst({
+        orderBy : {
+            id : 'desc'
+        }
+    })
+
   return (
     <main className="relative flex w-full min-h-screen flex-col items-center justify-between">
       <Image
@@ -28,7 +35,7 @@ export default function Home() {
         </div>
       </section>
       <section className='flex flex-col items-center py-5'>
-        <CardsCarousel/>
+        <CardsCarousel char={ newChar }/>
         <CharacterForm/>
       </section>
     </main>

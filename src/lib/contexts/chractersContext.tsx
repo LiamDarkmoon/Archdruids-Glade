@@ -1,10 +1,11 @@
 'use client'
-import { useReducer, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { characters, quotes, imgs } from "@/lib/placeholders";
 import { character } from '../Types';
 
-interface characterContextProps {
-    characters: character[];
+export interface characterContextProps {
+    chars: character[];
+    setChars: (newChars: character[]) => void;
     quotes: string[];
     imgs: string[];
 }
@@ -12,11 +13,16 @@ interface characterContextProps {
 export const charactersContext = createContext<characterContextProps | undefined>(undefined);
 
 export function CharactersProvider({ children } : { children: React.ReactNode}) {
-    /* const [chars, setChars] = useState(characters); */
+    const [chars, setChars] = useState(characters); 
+
+    useEffect(() => {
+        setChars(characters);
+    }, [])
 
     return (
         <charactersContext.Provider value={{
-            characters,
+            chars,
+            setChars,
             quotes,
             imgs
         }}
