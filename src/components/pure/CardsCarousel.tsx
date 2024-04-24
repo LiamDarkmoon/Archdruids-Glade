@@ -7,13 +7,13 @@ import { character } from '../../lib/Types';
 
 export default function CardsCarousel({ char } : { char: character[] | null }) {
     const [chars, setChars] = useState(characters);
-    const [cards, setCards] = useState(Array.from({ length: chars.length }, (_, i) => i))
+    const [cards, setCards] = useState(Array.from({ length: 4 }, (_, i) => i))
     const [width, setWidth] = useState(1000)
 
     const carouselRef = useRef<HTMLTableSectionElement>(null)
 
     useEffect(() => {
-        console.log(char)
+        console.log(cards)
         if(char) {
            setChars(char.slice(-5))
         }
@@ -34,20 +34,20 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
             onReorder={setCards}
             className="flex flex-wrap justify-center sm:grid grid-cols-5 sm:gap-2 gap-4"
         >
-            {chars.map((char, index) => (
+            {cards.map((card, index) => (
                 <Reorder.Item
-                    value={char.id}
-                    key={char.id}
+                    value={card}
+                    key={card}
                     drag
                     dragDirectionLock
                     dragElastic={ false }
                     dragConstraints={ carouselRef}
                 >
                 <Card 
-                    title={ char.name }
+                    title={ chars[index].name }
                     text={ quotes[index] } 
                     img={ imgs[index] }
-                    character={ char }
+                    character={ chars[index] }
                 />
                 </Reorder.Item>
             ))}

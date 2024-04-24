@@ -1,5 +1,7 @@
 'use client'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { charactersContext, characterContextProps } from '@/lib/contexts/chractersContext';
+import useModal from '@/lib/hooks/useModal';
 import Image from 'next/image';
 import CardBody from '../common/CardBody';
 import CardText from '../common/CardText';
@@ -7,7 +9,7 @@ import CardTitle from '../common/CardTitle';
 import { motion } from 'framer-motion';
 import Button from './Btn';
 import { character } from '../../lib/Types';
-import { deleteCharacter } from '@/lib/actions';
+import { deleteCharacter, getCharacter } from '@/lib/actions';
 
 const Card = ({ 
     title, 
@@ -25,6 +27,12 @@ const Card = ({
 
     const [isHover, setIsHover] = useState(false);
     const deleteWithId = deleteCharacter.bind(null, character.id);
+    const { setChar, setShow } = useContext(charactersContext) as characterContextProps;
+
+    const handleClick = () => {
+        setChar(character);
+        setShow(true);
+    }
 
     return (
         <>
@@ -76,7 +84,7 @@ const Card = ({
                         </span>
                     </CardText>
                     <CardText className="font-semibold text-rose-950 my-1 mx-auto">
-                        <div className='mx-auto'>Stats:</div> 
+                        <span className='block'>Stats:</span> 
                         <span className="text-sm font-medium"> { character.str } </span> |
                         <span className="text-sm font-medium"> { character.dex } </span> |
                         <span className="text-sm font-medium"> { character.con } </span> |
@@ -86,9 +94,13 @@ const Card = ({
                     </CardText>
                 </div>
                 <div>
-                    <Button className='w-full mb-2' click={()=> console.log("clicked")}>Show more</Button>
+                    <Button className='mb-2' click={ handleClick }>
+                        Show more
+                    </Button>
                     <form action={deleteWithId}>
-                    <button className='w-full border border-red-800 rounded-md p-2 text-red-800 font-semibold hover:bg-red-800 hover:text-white'>Delete</button>
+                        <Button secondary>
+                            Delete
+                        </Button>
                     </form>
                 </div>
             </CardBody>
