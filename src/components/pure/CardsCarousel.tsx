@@ -7,13 +7,12 @@ import { character } from '../../lib/Types';
 
 export default function CardsCarousel({ char } : { char: character[] | null }) {
     const [chars, setChars] = useState(characters);
-    const [cards, setCards] = useState(Array.from({ length: 4 }, (_, i) => i))
+    const [cards, setCards] = useState(Array.from({ length: 5 }, (_, i) => i))
     const [width, setWidth] = useState(1000)
 
     const carouselRef = useRef<HTMLTableSectionElement>(null)
 
     useEffect(() => {
-        console.log(cards.length)
         if(char) {
            setChars(char.slice(-5))
         }
@@ -21,7 +20,7 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
         if(carouselRef.current) {
             setWidth(carouselRef.current?.clientWidth)
         }
-    }, [char])
+    }, [char, chars.length])
 
 
   return (
