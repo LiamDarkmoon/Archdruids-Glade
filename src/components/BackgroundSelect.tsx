@@ -29,7 +29,7 @@ export default function BackgroundSelect({
             instanceId={useId()}
             options={ bgOptions } 
             className={ className }
-            defaultValue={ bgOptions[0] }
+            defaultValue={ bgOptions[Math.floor(Math.random() * bgOptions.length)] }
             isSearchable={ false }
             classNames={{ 
                 option: ()=> 'hover:bg-red-700 hover:text-white hover:bg-opacity-30 aria-selected:bg-red-700 aria-selected:text-white active:bg-red-700 active:text-white',

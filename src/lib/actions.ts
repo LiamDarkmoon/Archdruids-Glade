@@ -4,6 +4,7 @@ import { State } from './Types';
 import prisma  from './db';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { signIn, signOut } from '../../auth'
 
 const characterSchema = z.object({
     name: z.string({required_error: 'Por favor ingresa un nombre.'})
@@ -120,4 +121,12 @@ const characterSchema = z.object({
         message: 'error en la base de datos no se pudo obtener el personaje',
       }
     }
+  }
+
+  export async function logout(){
+    await signOut();
+  }
+  
+  export async function login(){
+    await signIn('google')
   }

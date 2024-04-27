@@ -24,7 +24,7 @@ export default function RaceSelect({
             instanceId={useId()}
             options={ raceOptions } 
             className={ className }
-            defaultValue={ raceOptions[0] }
+            defaultValue={ raceOptions[Math.floor(Math.random() * raceOptions.length)] }
             isSearchable={ false }
             classNames={{ 
                 option: ()=> 'hover:bg-red-700 hover:text-white hover:bg-opacity-30 aria-selected:bg-red-700 aria-selected:text-white active:bg-red-700 active:text-white',

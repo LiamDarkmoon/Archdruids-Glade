@@ -16,6 +16,8 @@
     "@react-pdf/renderer": "^3.4.4",
     "@types/pdfjs-dist": "^2.10.378",
     "@vercel/postgres": "^0.8.0",
+    "embla-carousel-autoplay": "^8.0.2",
+    "embla-carousel-react": "^8.0.2",
     "framer-motion": "^11.0.24",
     "gray-matter": "^4.0.3",
     "next": "^14.2.3",

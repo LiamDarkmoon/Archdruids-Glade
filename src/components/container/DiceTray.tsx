@@ -6,7 +6,7 @@ export const DiceTray = () => {
   
   return (
     <DiceProvider>
-      <div className='relative w-full dicetray text-center py-4'>
+      <div className='relative w-full h-4/5 sm:h-screen dicetray text-center py-4'>
           <h2 className="text-5xl w-9/12 sm:w-10/12 py-4"> Dice tray: </h2>
           <DiceCounter/>
       </div>

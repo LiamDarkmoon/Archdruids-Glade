@@ -1,16 +1,20 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
-import { Reorder } from "framer-motion";
-import { characters, imgs } from "@/lib/placeholders";
+import { useEffect, useState } from "react";
+import { imgs } from "@/lib/placeholders";
 import Card from "./Card";
 import { character } from '../../lib/Types';
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 export default function CardsCarousel({ char } : { char: character[] | null }) {
-    const [chars, setChars] = useState(characters);
-    const [cards, setCards] = useState(Array.from({ length: chars.length }, (_, i) => i))
-    const [width, setWidth] = useState(1000)
+    const [chars, setChars] = useState<character[]>();
 
-    const carouselRef = useRef<HTMLTableSectionElement>(null)
+    const options = {
+        delay: 2000,
+        stopOnMouseEnter: true,
+        stopOnInteraction: false,
+    }
+    const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay(options)])
 
     useEffect(() => {
         let newChars = chars
@@ -18,48 +22,25 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
             newChars = char
            setChars(newChars)
         }
-        setCards(Array.from({ length: newChars.length }, (_, i) => i))
-        if(carouselRef.current) {
-            setWidth(carouselRef.current?.clientWidth)
-        }
-    }, [char, chars, carouselRef.current?.scrollLeft])
-
-    const handleCLick = () => {
-        if (carouselRef.current) {
-            carouselRef.current.scrollLeft += -100
-        }
-    }
-
+    }, [char, chars])
 
   return (
     <article 
-        ref={ carouselRef }
-        className="py-6 w-screen overflow-scroll no-scrollbar"
+        ref={ emblaRef }
+        className="p-6 max-w-full overflow-hidden"
     >
-        <Reorder.Group 
-            axis={ width > 500 ? "x" : "y"}
-            values={cards}
-            onReorder={setCards}
-            className="flex flex-wrap justify-center sm:flex-nowrap sm:gap-2 gap-4"
-        >
-            {cards.map((card, index) => (
-                <Reorder.Item
-                    value={card}
-                    key={card}
-                    drag
-                    dragDirectionLock
-                    dragElastic={ false }
-                    dragConstraints={ carouselRef }
-                >
+        <div className="flex gap-4">
+            {chars?.map((char, index) => (
                 <Card 
-                    title={ chars[card].name }
-                    text={ chars[card].clas } 
-                    img={ cards.length <= imgs.length && index < imgs.length ? imgs[card] : imgs[3] }
-                    character={ chars[card] }
+                    key={ char.id }
+                    title={ char.name }
+                    text={ char.clas } 
+                    img={ chars.length <= imgs.length && index < imgs.length ? imgs[index] : imgs[Math.floor(Math.random() * imgs.length)] }
+                    character={ char }
+                    className={ index === chars.length -1 ? "me-4" : undefined }
                 />
-                </Reorder.Item>
             ))}
-        </Reorder.Group>
+        </div>
     </article>
   )
 }

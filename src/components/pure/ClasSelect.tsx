@@ -29,7 +29,7 @@ export default function ClasSelect({
             instanceId={useId()}
             options={ classOptions } 
             className={ className }
-            defaultValue={ classOptions[0] }
+            defaultValue={ classOptions[Math.floor(Math.random() * classOptions.length)] }
             isSearchable={ false }
             classNames={{ 
                 option: ()=> 'hover:bg-red-700 hover:text-white hover:bg-opacity-30 aria-selected:bg-red-700 aria-selected:text-white active:bg-red-700 active:text-white',

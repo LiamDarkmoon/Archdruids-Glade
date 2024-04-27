@@ -27,6 +27,7 @@ const CSheetViewer = () => {
       <Page 
         pageNumber={ page }
         onClick={ handleClick }
+        className="w-screen sm:w-auto"
       />
     </Document>
   );

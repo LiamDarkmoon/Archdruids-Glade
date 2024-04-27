@@ -1,7 +1,6 @@
 'use client'
 import { useState, useContext } from 'react';
 import { charactersContext, characterContextProps } from '@/lib/contexts/chractersContext';
-import useModal from '@/lib/hooks/useModal';
 import Image from 'next/image';
 import CardBody from '../common/CardBody';
 import CardText from '../common/CardText';
@@ -9,7 +8,7 @@ import CardTitle from '../common/CardTitle';
 import { motion } from 'framer-motion';
 import Button from './Btn';
 import { character } from '../../lib/Types';
-import { deleteCharacter, getCharacter } from '@/lib/actions';
+import { deleteCharacter } from '@/lib/actions';
 
 const Card = ({ 
     title, 
@@ -40,7 +39,7 @@ const Card = ({
             !isHover ?
         <motion.div
             onMouseOver={ () => setIsHover(true) }
-            className={ className + " relative h-[375px] w-[250px] flex flex-col items-center justify-end rounded-lg bg-opacity-45 shadow-lg shadow-amber-950" }
+            className={ className + " relative h-[375px] w-[250px] flex flex-col shrink-0 rounded-lg shadow-lg shadow-amber-950" }
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
             <CardBody className={"absolute bottom-0 h-1/3 w-full rounded-b-lg bg-amber-950 bg-opacity-80 text-amber-50 p-4"}>
@@ -53,7 +52,7 @@ const Card = ({
         <motion.div
             animate={ { rotateY: 360, scale: 1.1 } }
             onMouseLeave={ () => setIsHover(false) }
-            className={ className + " relative z-30 h-[375px] w-[250px] flex flex-col items-center justify-end rounded-lg bg-opacity-45 border border-solid border-rose-950 shadow-lg shadow-amber-950" }
+            className={ className + " relative z-30 h-[375px] w-[250px] flex flex-col shrink-0 items-center justify-end rounded-lg bg-opacity-45 border border-solid border-rose-950 shadow-lg shadow-amber-950" }
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
             <CardBody className="absolute flex flex-col gap-5 rounded-lg bg-amber-100 bg-opacity-80 h-full w-full p-6">

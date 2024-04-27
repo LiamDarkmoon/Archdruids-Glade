@@ -24,7 +24,7 @@ export default function AlignmentSelect({
             instanceId={useId()}
             options={ alignmentOptions } 
             className={ className }
-            defaultValue={ alignmentOptions[0] }
+            defaultValue={ alignmentOptions[Math.floor(Math.random() * alignmentOptions.length)] }
             isSearchable={ false }
             classNames={{ 
                 option: ()=> 'hover:bg-red-700 hover:text-white hover:bg-opacity-30 aria-selected:bg-red-700 aria-selected:text-white active:bg-red-700 active:text-white',
