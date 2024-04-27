@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
 import { Reorder } from "framer-motion";
-import { characters, quotes, imgs } from "@/lib/placeholders";
+import { characters, imgs } from "@/lib/placeholders";
 import Card from "./Card";
 import { character } from '../../lib/Types';
 
@@ -22,13 +22,19 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
         if(carouselRef.current) {
             setWidth(carouselRef.current?.clientWidth)
         }
-    }, [char, chars.length])
+    }, [char, chars, carouselRef.current?.scrollLeft])
+
+    const handleCLick = () => {
+        if (carouselRef.current) {
+            carouselRef.current.scrollLeft += -100
+        }
+    }
 
 
   return (
     <article 
         ref={ carouselRef }
-        className="py-6 overflow-hidden rounded-lg"
+        className="py-6 w-screen overflow-scroll no-scrollbar"
     >
         <Reorder.Group 
             axis={ width > 500 ? "x" : "y"}
@@ -47,8 +53,8 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
                 >
                 <Card 
                     title={ chars[card].name }
-                    text={ quotes[card] } 
-                    img={ imgs[card] }
+                    text={ chars[card].clas } 
+                    img={ cards.length <= imgs.length && index < imgs.length ? imgs[card] : imgs[3] }
                     character={ chars[card] }
                 />
                 </Reorder.Item>

@@ -43,7 +43,7 @@ const Card = ({
             className={ className + " relative h-[375px] w-[250px] flex flex-col items-center justify-end rounded-lg bg-opacity-45 shadow-lg shadow-amber-950" }
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
-            <CardBody className={"absolute bottom-0 h-1/3 rounded-b-lg bg-amber-950 bg-opacity-80 text-amber-50 p-4"}>
+            <CardBody className={"absolute bottom-0 h-1/3 w-full rounded-b-lg bg-amber-950 bg-opacity-80 text-amber-50 p-4"}>
                 <CardTitle className="text-lg font-bold"> { title } </CardTitle>
                 <CardText className="text-sm font-medium italic"> { text } </CardText>
             </CardBody>

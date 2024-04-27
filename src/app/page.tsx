@@ -18,7 +18,7 @@ export default async function Home() {
       fill
       sizes='100vw'
       />
-      <section className="relative z-20 flex flex-wrap w-full items-center justify-evenly pt-32 sm:py-20">
+      <section className="relative z-20 flex flex-wrap w-full items-center justify-evenly pt-40 sm:py-20">
         <div className="w-full sm:w-2/5 p-5  text-amber-50">
           <h5 className="hidden sm:block text-sm pb-2 mb-2 border-b-2 text-red-60000 border-amber-800">Welcome to the</h5>
           <h1 className="sm:text-6xl text-4xl font-bold mb-3">Archdruid&apos;s Glade</h1>
