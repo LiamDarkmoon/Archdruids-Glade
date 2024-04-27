@@ -28,7 +28,7 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
   return (
     <article 
         ref={ carouselRef }
-        className="w-screen py-6 overflow-hidden rounded-lg"
+        className="py-6 overflow-hidden rounded-lg"
     >
         <Reorder.Group 
             axis={ width > 500 ? "x" : "y"}
@@ -46,10 +46,10 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
                     dragConstraints={ carouselRef }
                 >
                 <Card 
-                    title={ chars[index].name }
-                    text={ quotes[index] } 
-                    img={ imgs[index] }
-                    character={ chars[index] }
+                    title={ chars[card].name }
+                    text={ quotes[card] } 
+                    img={ imgs[card] }
+                    character={ chars[card] }
                 />
                 </Reorder.Item>
             ))}
