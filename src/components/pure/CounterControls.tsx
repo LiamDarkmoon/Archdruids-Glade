@@ -33,7 +33,7 @@ export default function Controls() {
         </div>
         <div className='sm:w-1/2 w-10/12 flex justify-end sm:ms-2 my-1 p-0'>
             <Button className='w-1/2 mx-1 mt-auto' click={ handleRollButton } >Roll</Button>
-            <Button className='w-1/2 mx-1 mt-auto' click={ handleClear } >Clear</Button>
+            <Button secondary className='w-1/2 mx-1 mt-auto' click={ handleClear } >Clear</Button>
         </div>
     </div>
   )
