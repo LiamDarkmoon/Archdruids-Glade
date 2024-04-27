@@ -3,10 +3,8 @@ import { useEffect, useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import { PDFDocument } from 'pdf-lib';
-import { character } from '../../lib/Types';
 
-const CSheetViewer = ({ character }: { character: character }) => {
+const CSheetViewer = () => {
   const [sheet, setSheet] = useState<any>();
   const [page, setPage] = useState<number>(1);
 

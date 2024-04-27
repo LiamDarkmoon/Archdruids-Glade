@@ -18,7 +18,7 @@ const CharacterSheet = () => {
                   <div className="border-0 rounded-lg shadow-lg relative flex flex-col items-center pt-32 pb-2 outline-none focus:outline-none">
                     {/*header*/}
                     <div className="flex text-center p-5 border-b border-solid border-rose-950 rounded-t">
-                      <h3 className="text-3xl font-semibold">
+                      <h3 className="text-6xl font-semibold">
                         { char.name }
                       </h3>
                       <button
@@ -31,7 +31,7 @@ const CharacterSheet = () => {
                      </button>
                     </div>
                     {/*body*/}
-                    <CSheetViewer character={ char }/>
+                    <CSheetViewer/>
                   </div>
                 </div>
               </div>
