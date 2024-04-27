@@ -19,8 +19,9 @@ const CharacterForm = () => {
     useEffect(() => {
         if(state.message === "Personaje creado con exito") {
             formRef.current?.reset();
+            state.message = null;
         }
-    })
+    },[state])
 
     const stats = [
         'str',
@@ -33,6 +34,7 @@ const CharacterForm = () => {
 
     return (
         <form
+            ref={ formRef }
             action={ dispatch } 
             className='flex flex-col gap-2 max-w-full md:w-1/2 border rounded-lg mx-auot p-8 bg-amber-100 text-red-800'
         >
@@ -58,7 +60,7 @@ const CharacterForm = () => {
                             {error}
                             </p>
                 ))}
-            </div>                       
+            </div>
 
             <div className='w-full flex flex-col gap-1 px-2'>
                 <label htmlFor='clas'>Class</label>
@@ -82,14 +84,14 @@ const CharacterForm = () => {
 
             <div className='w-full flex flex-col gap-1 px-2'>
                 <label className='text-xl font-bold self-center' htmlFor='stats'>Stats</label>
-                <div className='w-full flex gap-3 justify-between items-center'>
+                <div className='w-full self-center flex gap-3 justify-between items-center'>
                     {stats.map((stat, index) =>
                     <div 
                         key={index}
                         className="flex flex-col gap-1"
                     >
                         <label htmlFor={stat}>{stat}:</label>
-                        <input className='py-1 px-2 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' id={stat} name={stat} type='number' defaultValue={10} min='8' max='20' pattern='[0-9]*' step='1' placeholder='10' />
+                        <input className='py-1 px-2 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' id={stat} name={stat} type='number' defaultValue={Math.floor(Math.random() * 11) + 8} min='8' max='20' pattern='[0-9]*' step='1' placeholder='10' />
                     </div>
                     )}
                 </div>
@@ -103,8 +105,10 @@ const CharacterForm = () => {
 
             <Button 
                 className='my-3'
+                secondary= { pending } 
+                click={ () => console.log('pending?',pending) }
             >
-                { pending ? "Creating" : "Create Character"}
+                { pending ? "Creating" : "Create Character" }
             </Button>
             <p className="mt-2 mx-auto text-sm text-amber-600">
                 { state?.message && state.message }

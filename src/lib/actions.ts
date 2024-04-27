@@ -80,7 +80,6 @@ const characterSchema = z.object({
 
       return {
         message: 'Personaje creado con exito',
-        newCharacter: newCharacter,
       }
     } catch (error) {
       return { 
