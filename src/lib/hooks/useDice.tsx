@@ -41,17 +41,10 @@ export default function useDice() {
     // Choose Die //
     const handleDieSelect = (e: any) => {
         const value = Number.parseInt(e.value);
-        /* const newDices = dices.Dices.map(dice => {
+        const newDices = dices.Dices.map(dice => {
             dice.faces = value;
             dice.dieResult = 1;
             return dice;
-        }) */
-        const newDices = dices.Dices.map((dice, index) => {
-            if(index === dices.Dices.length - 1){
-                dice.faces = value;
-                dice.dieResult = 1;
-                return dice;
-            } else return dice;
         })
         setDices(prev => ({
             ...prev,
