@@ -20,14 +20,14 @@ export default function useDice() {
         if (e.target) {
             const value = Number.parseInt(e.target.value);
             if (value >= 1 && value <= 50) {
-                const newDices = Array.from({ length: value }, () => new Dice(dices.Dice, dices.Mod));
+                const newDices = [...dices.Dices,...Array.from({ length: value - dices.Dices.length }, () => new Dice(dices.Dice, dices.Mod))];
                 setDices(prev => ({
                     ...prev,
                     Dices: newDices
                 }));
             } else if (value > 50) {
                 e.target.value = '50';
-                const newDices = Array.from({ length: 50 }, () => new Dice(dices.Dice, dices.Mod));
+                const newDices = [...dices.Dices,...Array.from({ length: 50 - dices.Dices.length }, () => new Dice(dices.Dice, dices.Mod))];
                 setDices(prev => ({
                     ...prev,
                     Dices: newDices
@@ -41,11 +41,14 @@ export default function useDice() {
     // Choose Die //
     const handleDieSelect = (e: any) => {
         const value = Number.parseInt(e.value);
-        const newDices = dices.Dices.map(dice => {
-            dice.faces = value;
-            dice.dieResult = 1;
+        const newDices = dices.Dices.map((dice, index) => {
+            if (index === dices.Dices.length - 1) {
+                dice.faces = value;
+                dice.dieResult = 1;
+            }
             return dice;
         })
+        console.log(newDices)
         setDices(prev => ({
             ...prev,
             Dice: value,

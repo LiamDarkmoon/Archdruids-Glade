@@ -15,10 +15,6 @@ const Die = ({ index } : { index: number }) => {
     // States
     const { dices } = diceContext as DiceContextType;
     const { handleRoll } = useDice();
-    const variants = {
-        start: { x: [0, 20, -25], rotate: 360, transition: { duration: 0.5, easeout: "easeInOut" } },
-        visible: { opacity: 1, scale: 1 },
-    }
 
     const d:Array<{ id: number, die: JSX.Element}> = [
         {
@@ -52,12 +48,10 @@ const Die = ({ index } : { index: number }) => {
             className='w-3/12 sm:w-2/12 m-1'
             onClick={() => handleRoll(index)}
             whileHover={{ scale: 1.1 }}
-            variants={ variants }
-            initial="start"
-            animate={ dices.Dices[index].rolling ? { x: 25, rotate: 360 , transition: { duration: 1.5, easeout: "easeInOut" } } : { x: -25, rotate: -360,  transition: { duration: 1.5, easeout: "easeInOut" } } }
+            animate={ dices.Dices[index].rolling ? { rotate: 360 , transition: { duration: 1.5, easeout: "easeInOut" } } : { rotate: -360,  transition: { duration: 1.5, easeout: "easeInOut" } } }
         >
-            { d.map((dice, index: number) => 
-             dices.Dice === d[index].id ? d[index].die : null) }
+            { d.map((dice, i: number) => 
+             dices.Dices[index].faces === d[i].id ? d[i].die : null) }
         </motion.span>
     )
 }
