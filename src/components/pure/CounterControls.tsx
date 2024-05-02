@@ -28,7 +28,7 @@ export default function Controls() {
             </div>
             <div className='r w-4/12'>
                 <label className='text-sm font-semibold' htmlFor="Mod" >Mod</label>
-                <input className='w-full' type='number' name="Mod" value={ dices.Mod } min={ -50 } max={ 50 } maxLength={ 2 } required pattern="-?\d*" onChange={HandleMod}/>
+                <input className='w-full' type='number' name="Mod" value={ dices.Mod } min={ -50 } max={ 50 } maxLength={ 3 } required pattern="-?\d*" onChange={HandleMod}/>
             </div>
         </div>
         <div className='sm:w-1/2 w-10/12 flex justify-end sm:ms-2 my-1 p-0'>

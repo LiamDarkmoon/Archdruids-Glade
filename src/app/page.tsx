@@ -12,10 +12,9 @@ export default async function Home() {
   return (
     <main className="relative flex max-screen min-h-screen flex-col items-center justify-between">
       <Image
-      src={autumn}
+      src={ autumn }
       alt='Autumn background'
-      className='object-cover -z-20'
-      fill
+      className='fixed h-screen lg:h-auto -z-20'
       sizes='100vw'
       />
       <section className="relative z-20 flex flex-wrap w-full items-center justify-evenly pt-36 sm:py-20">
@@ -33,9 +32,9 @@ export default async function Home() {
       </section>
       <section className='flex flex-col w-full overflow-hidden items-center py-5'>
         <CardsCarousel char={ newChar }/>
-        <CharacterSheet/>
         <CharacterForm/>
       </section>
+      <CharacterSheet/>
     </main>
   );
 }

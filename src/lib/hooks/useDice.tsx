@@ -1,4 +1,4 @@
-import { useState, useContext, ChangeEvent } from 'react';
+import { useContext, ChangeEvent } from 'react';
 import { DiceContext, DiceContextType } from '@/lib/contexts/DiceContext';
 import { Dice } from '../../lib/diceClass';
 
@@ -13,8 +13,6 @@ export default function useDice() {
 
     // States
     const { dices, setDices } = diceContext as DiceContextType;
-    const [result, setResult] = useState(1);
-    const [newDices, setNewDices] = useState(Array.from({ length: dices.Dices.length }, () => 20));
 
     const HandleDiceNumber = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target) {
@@ -25,15 +23,24 @@ export default function useDice() {
                     ...prev,
                     Dices: newDices
                 }));
+                if(value < newDices.length){
+                    setDices(prev => ({
+                        ...prev,
+                        Dices: newDices.slice(0,value)
+                    }));
+                }
             } else if (value > 50) {
-                e.target.value = '50';
                 const newDices = [...dices.Dices,...Array.from({ length: 50 - dices.Dices.length }, () => new Dice(dices.Dice, dices.Mod))];
                 setDices(prev => ({
                     ...prev,
                     Dices: newDices
                 }));
             } else {
-                e.target.value = '1';
+                const newDices = dices.Dices.slice(0,1);
+                setDices(prev => ({
+                    ...prev,
+                    Dices: newDices
+                }));
             }
         }
     };
@@ -48,7 +55,6 @@ export default function useDice() {
             }
             return dice;
         })
-        console.log(newDices)
         setDices(prev => ({
             ...prev,
             Dice: value,
@@ -70,25 +76,23 @@ export default function useDice() {
                 Dices: newDices
             }));
         } else if (value > 50) {
-            e.target.value = '50';
             const newDices = dices.Dices.map(dice => {
                 dice.mod = 50;
                 return dice;
             })
             setDices(prev => ({
                 ...prev,
-                mod: 50,
+                Mod: 50,
                 Dices: newDices
             }));
-        } else {
-            e.target.value = '-50';
+        } else if (value < -50) {
             const newDices = dices.Dices.map(dice => {
                 dice.mod = -50;
                 return dice;
             })
             setDices(prev => ({
                 ...prev,
-                mod: -50,
+                Mod: -50,
                 Dices: newDices
             }));
         }
@@ -99,9 +103,9 @@ export default function useDice() {
         setDices({
             Dice: 20,
             Mod: 0,
+            Result: 1,
             Dices: [new Dice(20, 0)],
         });
-        setResult(1)
     };
 
     // Roll onDiceClick
@@ -113,10 +117,10 @@ export default function useDice() {
             }
             return dice;
         });
-        setResult(result - lastResult + newDices[index].finalResult)
         setDices(prev => ({
             ...prev,
-            Dices: newDices
+            Dices: newDices,
+            Result: dices.Result - lastResult + dices.Dices[index].finalResult
         }));
     }
     // Roll onButtonClick
@@ -127,13 +131,12 @@ export default function useDice() {
         });
         setDices(prev =>({
             ...prev,
-            dices: newDices
+            Dices: newDices,
+            Result: dices.Dices.reduce((acc, dice) => acc + dice.finalResult, 0)
         }));
-        const NewResult = newDices.reduce((acc, dice) => acc + dice.finalResult, 0);
-        setResult(NewResult)
     }
 
-  return { HandleDiceNumber, HandleMod, handleClear, handleRoll, handleRollButton, handleDieSelect, result }
+  return { HandleDiceNumber, HandleMod, handleClear, handleRoll, handleRollButton, handleDieSelect }
 }
 
 

@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DiceContext, DiceContextType } from '@/lib/contexts/DiceContext';
-import { useAnimation, motion, animate, AnimationControls } from 'framer-motion';
+import { motion } from 'framer-motion';
 import useDice from '@/lib/hooks/useDice';
 
 export default function UpperLog() {
@@ -12,8 +12,6 @@ export default function UpperLog() {
 
     // States
     const { dices } = diceContext as DiceContextType;
-    const { result } = useDice();
-    const controls = useAnimation();
     const variants = {
         bounce: { y: [ 0, -50, 0 ], transition: { delay:1.5, duration: 1.5, repeat: Infinity } },
         stop: { y: 0, transition: { duration: 1.5 } }
@@ -31,7 +29,7 @@ export default function UpperLog() {
                 className='log-result'
             >
                 <h5 className='text-xl font-bold mt-1 mb-0'> Your Rolls: </h5>
-                <h3 className='text-lg font-semibold total mt-2'> { dices.Dices.length }D{ dices.Dices[0].faces }: { dices.Dices[0].dieResult } + { dices.Dices[0].mod } = { result } </h3>
+                <h3 className='text-lg font-semibold total mt-2'> { dices.Dices.length }D{ dices.Dices[0].faces }: { dices.Dices[0].dieResult } + { dices.Dices[0].mod } = { dices.Result } </h3>
                 { dices.Dices.map((die, i) => <h3 key={ i } className='text-lg font-semibold total mt-2'> D{ die.faces }: { die.dieResult } + { die.mod } = { die.finalResult } </h3>) } 
             </motion.div>
             <div className='log-result'>

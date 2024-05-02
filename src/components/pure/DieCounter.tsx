@@ -15,16 +15,12 @@ const DiceCounter = () => {
 
     // States
     const { dices } = diceContext as DiceContextType;
-    const variants = {
-        shaking: { rotate: [0, 90, 0, -90, 0], transition: { duration: 1 } },
-    }
 
     return (
         <div className='die w-10/12 flex flex-col items-center' >
             <UpperLog/>
             <Controls/>
-            <motion.div 
-                animate={ { rotate: [0, 5, 0, -5, 0], transition: { duration: 0.5 } } }
+            <div 
                 className='under-log w-full cursor-pointer'
             >
                 <div 
@@ -35,7 +31,7 @@ const DiceCounter = () => {
                         <Die key={index} index={index} />
                     )}
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 }

@@ -36,7 +36,7 @@ const CharacterForm = () => {
         <form
             ref={ formRef }
             action={ dispatch } 
-            className='flex flex-col gap-2 max-w-full md:w-1/2 border rounded-lg mx-auot p-8 bg-amber-100 text-red-800'
+            className='flex flex-col gap-2 max-w-full md:w-1/2 border rounded-lg my-6 p-8 bg-amber-100 text-red-800'
         >
             <h1 className='text-3xl font-bold text-center mb-4'>Create your character</h1>
 
