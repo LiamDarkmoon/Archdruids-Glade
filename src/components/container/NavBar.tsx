@@ -7,22 +7,28 @@ const NavBar = () => {
 
     return (
         <header className='absolute z-30 top-0 left-0 right-0 py-3 px-14 text-amber-50'>
-            <nav className="flex sm:justify-start justify-center items-center">
+            <nav className="flex sm:justify-between justify-center items-center gap-4">
                 <Link
                     href="/"
-                    className='flex flex-col sm:flex-row gap-2 items-center italic font-bold text-2xl sm:text-lg hover:text-amber-600 transition-colors duration-300'
+                    className='flex flex-col sm:flex-row gap-2 items-center italic font-bold text-3xl sm:text-lg hover:text-amber-600 transition-colors duration-300'
                 >
                     <Image
-                        src="/archdruid.png"
+                        src="/TdL.png"
                         alt="Brand Logo"
-                        height={50}
-                        width={40}
+                        height={75}
+                        width={75}
                         priority
                         className='h-auto'
                     />
                     <span className='align-middle'>
-                        Archdruid&apos;s Glade
+                        El Templo del Lobo
                     </span>
+                </Link>
+                <Link
+                    href="/combat"
+                    className='hover:text-amber-600 transition-colors duration-300'
+                >
+                    Combate
                 </Link>
             </nav>
         </header>

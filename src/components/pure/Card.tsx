@@ -39,10 +39,10 @@ const Card = ({
             !isHover ?
         <motion.div
             onMouseOver={ () => setIsHover(true) }
-            className={ className + " relative h-[375px] w-[250px] flex flex-col shrink-0 rounded-lg shadow-lg shadow-amber-950" }
+            className={ className + " relative h-[350px] w-[250px] flex flex-col shrink-0 rounded-lg shadow-lg shadow-amber-950" }
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
-            <CardBody className={"absolute bottom-0 h-1/3 w-full rounded-b-lg bg-amber-950 bg-opacity-80 text-amber-50 p-4"}>
+            <CardBody className="absolute bottom-0 h-1/3 w-full rounded-b-lg text-center bg-amber-950 bg-opacity-80 text-amber-50 p-4">
                 <CardTitle className="text-lg font-bold"> { title } </CardTitle>
                 <CardText className="text-sm font-medium italic"> { text } </CardText>
             </CardBody>
@@ -52,7 +52,7 @@ const Card = ({
         <motion.div
             animate={ { rotateY: 360, scale: 1.1 } }
             onMouseLeave={ () => setIsHover(false) }
-            className={ className + " relative z-30 h-[375px] w-[250px] flex flex-col shrink-0 items-center justify-end rounded-lg bg-opacity-45 border border-solid border-rose-950 shadow-lg shadow-amber-950" }
+            className={ className + " relative z-30 h-[350px] w-[250px] flex flex-col shrink-0 items-center justify-end rounded-lg bg-opacity-45 border border-solid border-rose-950 shadow-lg shadow-amber-950" }
         >
             <Image src={ img } className="h-full w-full rounded-md" width={ 200 } height={ 200 } alt={ title }/>
             <CardBody className="absolute flex flex-col gap-5 rounded-lg bg-amber-100 bg-opacity-80 h-full w-full p-6">
@@ -76,24 +76,15 @@ const Card = ({
                             { character.alignment }
                         </span>
                     </CardText>
-                    <CardText className="font-semibold text-rose-950 my-1">
+                    <CardText className="font-semibold text-rose-950 my-1 truncate">
                         Background: 
                         <span className="text-sm font-medium italic">
                             { character.background }
                         </span>
                     </CardText>
-                    <CardText className="font-semibold text-rose-950 my-1 mx-auto">
-                        <span className='block'>Stats:</span> 
-                        <span className="text-sm font-medium"> { character.str } </span> |
-                        <span className="text-sm font-medium"> { character.dex } </span> |
-                        <span className="text-sm font-medium"> { character.con } </span> |
-                        <span className="text-sm font-medium"> { character.int } </span> |
-                        <span className="text-sm font-medium"> { character.wis } </span> |
-                        <span className="text-sm font-medium"> { character.cha } </span>
-                    </CardText>
                 </div>
                 <div>
-                    <Button className='mb-2' click={ handleClick }>
+                    <Button className='mt-6 mb-2' click={ handleClick }>
                         Show more
                     </Button>
                     <form action={deleteWithId}>

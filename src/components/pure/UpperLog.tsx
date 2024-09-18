@@ -28,7 +28,7 @@ export default function UpperLog() {
                 variants={ variants }
                 className='log-result'
             >
-                <h5 className='text-xl font-bold mt-1 mb-0'> Your Rolls: </h5>
+                <h5 className='text-xl font-bold mt-1 mb-0'> Tus Tiradas: </h5>
                 <h3 className='text-lg font-semibold total mt-2'> { dices.Dices.length }D{ dices.Dices[0].faces }: { dices.Dices[0].dieResult } + { dices.Dices[0].mod } = { dices.Result } </h3>
                 { dices.Dices.map((die, i) => <h3 key={ i } className='text-lg font-semibold total mt-2'> D{ die.faces }: { die.dieResult } + { die.mod } = { die.finalResult } </h3>) } 
             </motion.div>
@@ -39,7 +39,7 @@ export default function UpperLog() {
         :
 
         <div className='upper-log w-full'>
-            <h5 className='text-xl font-bold m-1 mb-0'> Your Roll: </h5>
+            <h5 className='text-xl font-bold m-1 mb-0'> Tu tirada: </h5>
             <h3 className='text-lg font-semibold total mt-2'> D{dices.Dices[0].faces }: { dices.Dices[0].dieResult } + { dices.Dices[0].mod } = { dices.Dices[0].finalResult }  </h3>
         </div>
     } 

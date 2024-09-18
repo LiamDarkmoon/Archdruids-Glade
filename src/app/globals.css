@@ -20,19 +20,18 @@
   box-sizing: border-box;
 }
 
-
+.glass {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
 
 .dicetray {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: rgba(203, 241, 210, 0.43);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(203, 241, 210, 0.3);
   border-radius: 20px;
 }
 .dicetray .tray-ttl {
@@ -41,8 +40,8 @@
 .dicetray .die .upper-log {
   border: 1px solid #432818;
   border-radius: 12px;
-  margin: 8px 0;
-  padding: 8px 16px;
+  margin: 16px 0 8px 0;
+  padding: 16px;
   height: 15vh;
   overflow: auto;
   scroll-behavior: smooth;
@@ -141,4 +140,13 @@
   padding: 16px 32px;
   border-radius: 10px;
   color: white;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

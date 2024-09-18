@@ -93,3 +93,19 @@ export const imgs = [
     "/assets/imgs/regan.jpg",
     "/assets/imgs/thuran.jpg",
 ]
+
+export const monsters = [
+    {
+        id: 1,
+        name: "Goblin",
+        img: "/assets/imgs/goblin.jpg",
+        type: "Humanoid",
+        size: "Small",
+        alignment: "Chaotic Evil",
+        ac: 15,
+        hp: 7,
+        speed: 30,
+        str: 8,
+        dex: 14,
+    }
+]

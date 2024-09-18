@@ -4,7 +4,7 @@ import Button from '../Btn';
 import ClasSelect from '../ClasSelect';
 import { createCharacter } from '@/lib/actions';
 import RaceSelect from '../RaceSelect';
-import BackgroundSelect from '@/components/BackgroundSelect';
+import BackgroundSelect from '@/components/pure/BackgroundSelect';
 import AlignmentSelect from '../AlignmentSelect';
 import { State } from '@/lib/Types';
 import { useEffect, useRef } from 'react';
@@ -36,23 +36,12 @@ const CharacterForm = () => {
         <form
             ref={ formRef }
             action={ dispatch } 
-            className='flex flex-col gap-2 max-w-full md:w-1/2 border rounded-lg my-6 p-8 bg-amber-100 text-red-800'
+            className='flex flex-col gap-2 max-w-full md:w-1/2 p-8 glass bg-amber-100/40 text-amber-950'
         >
-            <h1 className='text-3xl font-bold text-center mb-4'>Create your character</h1>
+            <h1 className='text-3xl font-bold text-center mb-4'>Nuevo Personaje</h1>
 
             <div className='w-full flex flex-col gap-1 px-2'>
-                <label htmlFor='lvl'>Level</label>
-                <input className='py-1 px-2 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' name='lvl' type='number' defaultValue={1} min='1' max='20' pattern='[0-9]*' step='1' placeholder='1' />
-               {/*  {state?.errors?.name &&
-                        state.errors.name.map((error: string) => (
-                            <p className="mt-2 mx-auto text-sm text-warning" key={error}>
-                            {error}
-                            </p>
-                ))} */}
-            </div>
-
-            <div className='w-full flex flex-col gap-1 px-2'>
-                <label htmlFor='name'>Name</label>
+                <label htmlFor='name'>Nombre</label>
                 <input className='py-1 px-2 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' id='name' type='text' name='name' placeholder='Liam Darkmoon' />
                 {state?.errors?.name &&
                         state.errors.name.map((error: string) => (
@@ -63,22 +52,34 @@ const CharacterForm = () => {
             </div>
 
             <div className='w-full flex flex-col gap-1 px-2'>
-                <label htmlFor='clas'>Class</label>
+                <label htmlFor='clas'>Clase</label>
                 <ClasSelect  className='py-1 rounded-md'/>
             </div>
 
             <div className='w-full flex flex-col gap-1 px-2'>
-                <label htmlFor='race'>Race</label>
+                <label htmlFor='lvl'>Nivel</label>
+                <input className='py-1 px-2 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' name='lvl' type='number' defaultValue={1} min='1' max='20' pattern='[0-9]*' step='1' placeholder='1' />
+               {/*  {state?.errors?.name &&
+                        state.errors.name.map((error: string) => (
+                            <p className="mt-2 mx-auto text-sm text-warning" key={error}>
+                            {error}
+                            </p>
+                ))} */}
+            </div>
+
+
+            <div className='w-full flex flex-col gap-1 px-2'>
+                <label htmlFor='race'>Especie</label>
                 <RaceSelect className='py-1 rounded-md'/>
             </div>
 
             <div className='w-full flex flex-col gap-1 px-2'>
-                <label htmlFor='background'>Background</label>
+                <label htmlFor='background'>Transfondo</label>
                 <BackgroundSelect className='py-1 rounded-md'/>
             </div>
 
             <div className='w-full flex flex-col gap-1 px-2'>
-                <label htmlFor='alignment'>Alignment</label>
+                <label htmlFor='alignment'>Alineamiento</label>
                 <AlignmentSelect className='py-1 rounded-md'/>
             </div>
 
@@ -108,9 +109,9 @@ const CharacterForm = () => {
                 secondary= { pending } 
                 click={ () => console.log('pending?',pending) }
             >
-                { pending ? "Creating" : "Create Character" }
+                { pending ? "Creando" : "Crear" }
             </Button>
-            <p className="mt-2 mx-auto text-sm text-amber-600">
+            <p className="mt-2 mx-auto text-sm text-red-600">
                 { state?.message && state.message }
             </p>
         </form>

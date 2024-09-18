@@ -13,7 +13,9 @@ export interface DiceContextType {
         Mod: number,
         Result: number,
         Dices: Dice[],
-    }>>
+    }>>,
+    hidden: boolean,
+    setHidden: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 export const DiceContext = createContext<DiceContextType | undefined>(undefined);
@@ -25,12 +27,15 @@ export function DiceProvider({ children } : { children: React.ReactNode}) {
         Result: 1,
         Dices: [new Dice(20, 0)],
     });
+    const [hidden, setHidden] = useState(false);
 
 
     return (
         <DiceContext.Provider value={{
             dices,
-            setDices
+            hidden,
+            setDices,
+            setHidden
         }}
         >
             {children}
