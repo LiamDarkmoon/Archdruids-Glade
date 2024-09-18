@@ -32,7 +32,7 @@ export default function HeroSection() {
         <motion.div 
           animate={ hidden ? { x: 350 } : { x: 0 } }
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className={ !hidden ? "absolute left-24 w-full sm:w-2/5 p-5  text-amber-50" : "absolute left-24 w-full sm:w-2/5 p-5  text-amber-50 text-center"}
+          className={ !hidden ? "md:absolute left-24 w-full sm:w-2/5 p-5  text-amber-50" : "md:absolute left-24 w-full sm:w-2/5 p-5  text-amber-50 text-center"}
         >
           <h5 className="hidden sm:block text-sm pb-2 mb-2 border-b-2 border-amber-800">Bienvenidos a</h5>
           <h1 className="sm:text-5xl text-4xl font-bold mb-4">El Templo del Lobo</h1>
@@ -47,7 +47,7 @@ export default function HeroSection() {
           Crea un Personaje
         </Link>
         </motion.div>
-        <div className="fixed top-[100px] right-20 w-full sm:w-2/5">
+        <div className="fixed top-[100px] md:right-20 w-full sm:w-2/5">
           <DiceTray/>
         </div>
       </section>

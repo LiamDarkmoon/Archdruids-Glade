@@ -7,7 +7,7 @@ export default async function Characters() {
 
     return (
       <main className="relative flex min-h-screen pt-[100px]">
-        <section className="flex w-full mx-10 mb-10 rounded-lg overflow-hidden">
+        <section className="flex flex-col sm:flex-row w-full md:mx-10 md:mb-10 rounded-lg overflow-hidden">
           <CharacterForm />
           <CardsCarousel char={chars} />
         </section>

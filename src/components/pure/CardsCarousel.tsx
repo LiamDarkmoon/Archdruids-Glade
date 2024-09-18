@@ -26,7 +26,7 @@ export default function CardsCarousel({ char } : { char: character[] | null }) {
   return (
     <article 
         ref={ emblaRef }
-        className="flex flex-col gap-2 p-10 w-1/2 max-w-full h-auto overflow-hidden glass bg-amber-100/40"
+        className="flex flex-col gap-3 p-10 sm:w-1/2 max-w-full h-auto overflow-hidden glass bg-amber-100/40"
     >
         <div className="flex gap-4">
             {chars?.map((char, index) => (
