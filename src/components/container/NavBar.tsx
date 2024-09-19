@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from "next/image";
-import Button from '../pure/Btn';
 import { login } from '@/lib/actions';
 
 const NavBar = () => {
@@ -24,7 +23,7 @@ const NavBar = () => {
                         El Templo del Lobo
                     </span>
                 </Link>
-                <div className="flex gap-3">
+                <div className="flex gap-3 text-sm">
                     <Link
                         href="/characters"
                         className='hover:text-amber-600 transition-colors duration-300'
