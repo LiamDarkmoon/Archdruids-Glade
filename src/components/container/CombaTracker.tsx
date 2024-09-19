@@ -9,8 +9,7 @@ export default function CombaTracker() {
       <div className="flex flex-col sm:flex-row flex-wrap gap-5">
         <Encounter/>
         <PartyList className="sm:w-auto p-6 border border-amber-100/30 bg-amber-100/40 glass rounded-lg shadow-md"/>
-        <form className="w-full p-6 border border-amber-100/30 bg-amber-100/40 glass rounded-lg shadow-md">
-          <input className="border rounded-md p-2" type="text" placeholder="Kobold" />
+        <form className="w-full h-14 p-6 border border-amber-100/30 bg-amber-100/40 glass rounded-lg shadow-md">
         </form>
       </div>
     </section>

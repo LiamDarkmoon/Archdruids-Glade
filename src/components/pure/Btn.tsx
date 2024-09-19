@@ -8,15 +8,15 @@ const Button = ({
     } : {
         secondary?: boolean, // secondary button
         className?: string,
-        children: string,
+        children: React.ReactNode,
         click?: () => void | Promise<void>,
     }) => {
     return (
         <button 
         className={ secondary ? 
-            className + ' w-full border border-red-800 rounded-md p-2 text-red-800 font-semibold hover:bg-red-800 hover:text-white' 
+            className + ' w-full border border-rose-800 rounded-md p-2 text-rose-800 font-semibold hover:bg-rose-800 hover:text-amber-50' 
             : 
-            className + ' w-full bg-red-700 rounded-md p-2 text-white font-semibold hover:bg-red-800' } 
+            className + ' w-full bg-rose-700 rounded-md p-2 text-amber-50 font-semibold hover:bg-rose-800' } 
         type="submit" 
         onClick={ click }
         > 
