@@ -21,7 +21,7 @@ export const DiceTray = () => {
       {
         !hidden &&
         <div 
-          className='relative w-full sm:h-[70%] dicetray glass bg-amber-100/40 border border-amber-100/30 text-center py-5 duration-500 ease-out'
+          className='relative w-full sm:h-[70%] dicetray glass bg-amber-100/40 border border-amber-100/30 text-center py-5 mb-4 duration-500 ease-out'
         >
             <DiceCounter/>
         </div>
