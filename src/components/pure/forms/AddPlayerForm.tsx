@@ -36,7 +36,7 @@ export default function AddPlayerForm() {
         type="text"
         name='playerName'
         placeholder='Agregar miembro'
-        className='md:w-[378px] p-2 border border-amber-700 rounded-md'
+        className='w-full md:w-[378px] p-2 border border-amber-700 rounded-md'
         onChange={handleInputChange}
         value={player}
         />
