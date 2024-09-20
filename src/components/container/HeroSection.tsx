@@ -28,6 +28,9 @@ export default function HeroSection() {
       } else {
         setHidden(false)
       }
+      if(!windowW) {
+        setHidden(false)
+      }
    }, [scrollY])
 
    useEffect(() => {

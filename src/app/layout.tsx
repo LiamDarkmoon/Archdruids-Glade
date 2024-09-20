@@ -26,9 +26,9 @@ export default function RootLayout({
           src={ Vitral }
           alt='Autumn background'
           className='fixed h-full min-h-screen lg:h-auto -z-20'
-          sizes='100vw'
+          /* sizes='100vw' */
           />
-          <div className='fixed top-0 bottom-0 h-screen w-screen lg:h-auto -z-20 bg-black/30'>&nbsp;</div>
+          <div className='fixed top-0 bottom-0 right-0 left-0 -z-20 bg-black/30'>&nbsp;</div>
           {children}
         </ContextProvider>
         </body>
