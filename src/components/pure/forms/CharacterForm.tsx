@@ -85,14 +85,14 @@ const CharacterForm = () => {
 
             <div className='w-full flex flex-col gap-1 px-2'>
                 <label className='text-xl font-bold self-center' htmlFor='stats'>Stats</label>
-                <div className='w-full self-center flex gap-3 justify-between items-center'>
+                <div className='w-full self-center flex gap-2 justify-between items-center'>
                     {stats.map((stat, index) =>
                     <div 
                         key={index}
                         className="flex flex-col gap-1"
                     >
                         <label htmlFor={stat}>{stat}:</label>
-                        <input className='py-1 px-2 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' id={stat} name={stat} type='number' defaultValue={Math.floor(Math.random() * 11) + 8} min='8' max='20' pattern='[0-9]*' step='1' placeholder='10' />
+                        <input className='p-1 border rounded border-slate-400 aria-selected:shadow-red-800 focus-visible:outline-none focus-visible:border-red-800' id={stat} name={stat} type='number' defaultValue={Math.floor(Math.random() * 11) + 8} min='8' max='20' pattern='[0-9]*' step='1' placeholder='10' />
                     </div>
                     )}
                 </div>
