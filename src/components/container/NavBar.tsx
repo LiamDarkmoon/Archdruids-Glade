@@ -5,7 +5,7 @@ import { login } from '@/lib/actions';
 const NavBar = () => {
 
     return (
-        <header className='absolute z-30 top-0 left-0 right-0 py-3 px-14 text-amber-50'>
+        <header className='absolute z-30 top-0 left-0 right-0 py-3 px-4 sm:px-14 text-amber-50'>
             <nav className="flex justify-between items-center gap-4">
                 <Link
                     href="/"

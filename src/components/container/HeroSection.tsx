@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState, useRef } from 'react';
 import Link from 'next/link';
 import DiceTray from './DiceTray';
 import { useScrollPosition } from './../../lib/hooks/useScrollPosition';
@@ -14,10 +14,13 @@ export default function HeroSection() {
         throw new Error('useDiceContext must be used within a DiceProvider');
     }
 
+    //Ref
+    const windowRef = useRef<HTMLElement>(null)
+
     // States
     const { hidden, setHidden} = diceContext as DiceContextType;
     const { scrollY } = useScrollPosition();
-    const [monsters, setMonsters] = useState();
+    const [windowW, setWindowW] = useState(false);
 
    useEffect(() => {
       if(scrollY > 250){
@@ -27,12 +30,18 @@ export default function HeroSection() {
       }
    }, [scrollY])
 
+   useEffect(() => {
+      if(windowRef.current && windowRef.current?.offsetWidth > 768){
+        setWindowW(true)
+      }
+   }, [])
+
   return (
-    <section className="relative z-20 flex flex-wrap min-h-screen w-full items-center justify-center pt-36 sm:py-[100px]">
+    <section ref={windowRef} className="relative z-20 flex flex-wrap min-h-screen w-full items-center justify-center pt-36 sm:py-[100px]">
         <motion.div 
-          animate={ hidden ? { x: 350 } : { x: 0 } }
+          animate={ windowW ? hidden ? { x: 350 } : { x: 0 } : { x: -100 } }
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className={ !hidden ? "relative md:absolute left-24 w-full sm:w-2/5 p-5  text-amber-50" : "relative md:absolute left-24 w-full sm:w-2/5 p-5  text-amber-50 text-center"}
+          className={ !hidden ? "relative md:absolute left-24 w-full sm:w-2/5 p-5  text-amber-50 text-center md:text-start" : "relative md:absolute left-24 w-full sm:w-2/5 p-5  text-amber-50 text-center"}
         >
           <h5 className="hidden sm:block text-sm pb-2 mb-2 border-b-2 border-amber-800">Bienvenidos a</h5>
           <h1 className="sm:text-5xl text-4xl font-bold mb-4">El Templo del Lobo</h1>
