@@ -12,20 +12,29 @@ export interface CombatContextProps {
     setPlayers: Dispatch<SetStateAction<Player[]>>; // function to set players  
 }
 
-const getInitialState = () => {
-    const Players = localStorage.getItem('players');
-    return Players ? JSON.parse(Players) : []
-}
+const initialState: Player[] = []
 
 export const CombatContext = createContext<CombatContextProps | undefined>(undefined);
 
 export function CombatProvider({ children } : { children: React.ReactNode}) {
-    const [players, setPlayers] = useState<Player[]>(getInitialState());
+    const [players, setPlayers] = useState<Player[]>(initialState);
 
     useEffect(() => {
-        // save players to local storage
-        localStorage.setItem('players', JSON.stringify(players));
+        // retrieve players to local storage
+        const getInitialState = () => {
+            const Players = localStorage.getItem('players');
+            return Players ? JSON.parse(Players) : []
+        }
+        setPlayers(getInitialState())
+    }, [])
+
+    useEffect(() => {
+        if(players !== initialState) {
+            // save players to local storage
+            localStorage.setItem('players', JSON.stringify(players));
+        }
     }, [players])
+
 
     return (
         <CombatContext.Provider value={{

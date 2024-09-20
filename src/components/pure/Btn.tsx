@@ -14,9 +14,9 @@ const Button = ({
     return (
         <button 
         className={ secondary ? 
-            className + ' w-full border border-rose-800 rounded-md p-2 text-rose-800 font-semibold hover:bg-rose-800 hover:text-amber-50' 
+            className + ' border border-rose-800 rounded-md p-2 text-rose-800 font-semibold hover:bg-rose-800 hover:text-amber-50' 
             : 
-            className + ' w-full bg-rose-700 rounded-md p-2 text-amber-50 font-semibold hover:bg-rose-800' } 
+            className + ' bg-rose-700 rounded-md p-2 text-amber-50 font-semibold hover:bg-rose-800' } 
         type="submit" 
         onClick={ click }
         > 
