@@ -5,7 +5,7 @@ export default function Encounter() {
     <div className="sm:w-[70%] flex flex-wrap items-start p-6 border border-amber-100/30 bg-amber-100/40 glass rounded-lg shadow-md">
         <div className="sm:w-1/2 flex flex-col p-3 border-e border-amber-950 text-sm">
             <h2 className="text-2xl font-bold mb-1">Cydrat, El Terror Rugiente</h2>
-            <h3 className="text-sm font-bold italic mb-4">Dragon Colosal, Legal Malvado (30 pies x 60 pies)</h3>
+            <h3 className="text-sm font-bold italic mb-4">Dragon Colosal, Legal Malvado</h3>
             <div className="w-full flex flex-col gap-2 py-3 border-y border-amber-950">
                 <p><span className="font-bold">Clase de Armadura:</span> 22(Armadura Natural)</p>
                 <p><span className="font-bold">Puntos de Golpe:</span> 500(26d20 + 220)</p>
@@ -42,7 +42,7 @@ export default function Encounter() {
         </div>
         <div className="w-full flex flex-col gap-3 p-4 text-sm">
             <h4 className="text-2xl font-semibold pb-3 border-b border-amber-950">Acciones Legendarias</h4>
-            <p className='font-medium italic pb-2'> Cydrat puede realizar tr pb-2es acciones legendarias, elegidas entre las opciones a continuacion. Solo una de estas puede ser usada a la vez y al final del turno de otra criatura. El dragon recupera estas acciones al principio de su turno</p>
+            <p className='font-medium italic pb-2'> Cydrat puede realizar tres acciones legendarias, elegidas entre las opciones a continuacion. Solo una de estas puede ser usada a la vez y al final del turno de otra criatura. El dragon recupera estas acciones al principio de su turno</p>
             <p className='font-medium'><span className="font-bold">Detectar:</span> Cydrat realiza una tirada de Percepcion</p>
             <p className='font-medium'><span className="font-bold">Coletazo:</span> Cydrat ataca con su cola</p>
             <p><span className="font-bold">Ataque de Ala:</span> Cydrat bate sus alas con fuerza. cada criatura dentro de un radio de 15 pies del dragon debe superar una salvacion de Destreza o recibir 2d6 + 10 de daño contundente y caer al suelo. Luego el dragon se eleva en el aire la mitad de su velocidad</p>
