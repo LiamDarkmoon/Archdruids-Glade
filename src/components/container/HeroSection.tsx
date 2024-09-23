@@ -22,22 +22,23 @@ export default function HeroSection() {
     const { scrollY } = useScrollPosition();
     const [windowW, setWindowW] = useState(false);
 
+    useEffect(() => {
+       if(windowRef.current && windowRef.current?.offsetWidth > 768){
+         setWindowW(true)
+       }
+    }, [])
+
    useEffect(() => {
-      if(scrollY > 250){
+      if(scrollY > 250 && windowW){
         setHidden(true)
       } else {
         setHidden(false)
       }
-      if(!windowW) {
+      /* if(!windowW) {
         setHidden(false)
-      }
+      } */
    }, [scrollY])
 
-   useEffect(() => {
-      if(windowRef.current && windowRef.current?.offsetWidth > 768){
-        setWindowW(true)
-      }
-   }, [])
 
   return (
     <section ref={windowRef} className="relative z-20 flex flex-wrap min-h-screen w-full items-center justify-center pt-36 sm:py-[100px]">
@@ -54,7 +55,7 @@ export default function HeroSection() {
           </p>
           <Link 
           href='/characters'
-          className='w-full bg-red-700 rounded-md py-2 px-4 text-white font-semibold hover:bg-red-800 transition-colors duration-300 ease-in-out'
+          className='w-full bg-rose-700 rounded-md py-2 px-4 text-amber-50 font-semibold hover:bg-rose-800 transition-colors duration-300 ease-in-out'
           >
           Crea un Personaje
         </Link>

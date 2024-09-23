@@ -64,8 +64,8 @@ export default function PartyList({ className } : { className?: string } ) {
                 className="flex items-center"
                 >
                     <div className="flex items-center gap-2 p-2 text-start cursor-pointer rounded-md hover:bg-amber-200/50">
-                        <p className="w-[150px] text-lg font-medium truncate border-b border-amber-950">{player.name}</p>
-                        <p className="w-[50] text-lg font-medium">HP:
+                        <p className="sm:w-[82px] text-lg font-bold truncate border-b border-amber-950">{player.name}</p>
+                        <p className="font-medium">HP:
                             <input 
                             type="text" 
                             value={ player.hp }
@@ -78,7 +78,7 @@ export default function PartyList({ className } : { className?: string } ) {
                         {
                             player.turn ?
                             <button 
-                            className='bg-none rounded-md p-1'
+                            className='bg-none rounded-md'
                             onClick={() => handleTurn(i)}
                             >
                                 <svg fill="#d97706" width="24px" height="24px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@ export default function PartyList({ className } : { className?: string } ) {
                             </button>
                             :
                             <button 
-                            className='bg-none rounded-md p-1'
+                            className='bg-none rounded-md'
                             onClick={() => handleTurn(i)}
                             >
                                 <svg fill="#fbbf24" width="24px" height="24px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +96,7 @@ export default function PartyList({ className } : { className?: string } ) {
                             </button>
                         }
                         <button 
-                        className='bg-none rounded-md p-1'
+                        className='bg-none rounded-md'
                         onClick={() => console.log('buffitos')}
                         >
                             <svg fill="#155e75" width="24px" height="24px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +104,7 @@ export default function PartyList({ className } : { className?: string } ) {
                             </svg>
                         </button>
                         <button 
-                        className='bg-none rounded-md p-1'
+                        className='bg-none rounded-md'
                         onClick={() => console.log('debuffitos')}
                         >
                             <svg fill="#3f3f46" width="24px" height="24px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -119,12 +119,12 @@ export default function PartyList({ className } : { className?: string } ) {
                                 </g>
                             </svg>
                         </button>
+                        <Button click={()=> handleDissmisPlayer(i)} className='w-auto ms-auto'>
+                            <svg fill="#fffbeb" width="16px" height="16px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m552.51 305.07v281.79c0 29.668-24.273 53.957-53.957 53.957h-197.12c-29.668 0-53.957-24.273-53.957-53.957v-281.79zm-208.62-145.88h112.23c17.41 0 31.648 14.254 31.648 31.648v25.543h91.004v65.461h-357.53v-65.461h91.004v-25.543c0-17.41 14.254-31.648 31.648-31.648zm-14.328 262.45c-4.5352-4.5352-4.5352-11.895 0-16.43 4.5352-4.5352 11.895-4.5352 16.43 0l54.02 54.02 54.02-54.02c4.5352-4.5352 11.895-4.5352 16.43 0 4.5352 4.5352 4.5352 11.895 0 16.43l-54.02 54.02 54.02 54.02c4.5352 4.5352 4.5352 11.895 0 16.43-4.5352 4.5352-11.895 4.5352-16.43 0l-54.02-54.02-54.02 54.02c-4.5352 4.5352-11.895 4.5352-16.43 0-4.5352-4.5352-4.5352-11.895 0-16.43l54.02-54.02z" fill-rule="evenodd"/>
+                            </svg>
+                        </Button>
                     </div>
-                    <Button click={()=> handleDissmisPlayer(i)} className='w-auto ms-auto'>
-                        <svg fill="#fffbeb" width="16px" height="16px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m552.51 305.07v281.79c0 29.668-24.273 53.957-53.957 53.957h-197.12c-29.668 0-53.957-24.273-53.957-53.957v-281.79zm-208.62-145.88h112.23c17.41 0 31.648 14.254 31.648 31.648v25.543h91.004v65.461h-357.53v-65.461h91.004v-25.543c0-17.41 14.254-31.648 31.648-31.648zm-14.328 262.45c-4.5352-4.5352-4.5352-11.895 0-16.43 4.5352-4.5352 11.895-4.5352 16.43 0l54.02 54.02 54.02-54.02c4.5352-4.5352 11.895-4.5352 16.43 0 4.5352 4.5352 4.5352 11.895 0 16.43l-54.02 54.02 54.02 54.02c4.5352 4.5352 4.5352 11.895 0 16.43-4.5352 4.5352-11.895 4.5352-16.43 0l-54.02-54.02-54.02 54.02c-4.5352 4.5352-11.895 4.5352-16.43 0-4.5352-4.5352-4.5352-11.895 0-16.43l54.02-54.02z" fill-rule="evenodd"/>
-                        </svg>
-                    </Button>
                 </Reorder.Item>
                 )
             }
