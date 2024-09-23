@@ -47,14 +47,14 @@ export default function PartyList({ className } : { className?: string } ) {
     }
   
   return (
-    <div className={ className + ' flex flex-col gap-2 border-b border-amber-950'}>
+    <div className={ className + ' flex flex-col gap-2'}>
         <h2 className="text-xl font-semibold border-b border-amber-950 pb-3 mb-2">Grupo</h2>
         <AddPlayerForm/>
         <Reorder.Group 
         axis='y'
         values={initiative}
         onReorder={setInitiative}
-        className="flex flex-col"
+        className="flex flex-col pb-3 border-b border-amber-950"
         >
             {
                 players.map((player, i) => 
