@@ -3,6 +3,7 @@ import AddPlayerForm from './forms/AddPlayerForm'
 import { CombatContext, CombatContextProps } from '../../lib/contexts/CombatContext';
 import Button from './Btn';
 import { Reorder } from "framer-motion"
+import PartyActions from './PartyActions';
 
 export default function PartyList({ className } : { className?: string } ) {
     const combatContext = useContext(CombatContext)
@@ -11,13 +12,12 @@ export default function PartyList({ className } : { className?: string } ) {
         throw new Error('useCombatContext must be used within a contextProvider');
     }
 
-    const { players, setPlayers } = combatContext as CombatContextProps
-    const [initiative, setInitiative] = useState<number[]>([0,1,2,3,4,5,6,7,8]);
+    const { players, setPlayers, initiative, setInitiative} = combatContext as CombatContextProps
 
     const handleDissmisPlayer = (i: number) => {
+        let newPlayers = [...players]
         if (players.length > 0) {
-            let newPlayers = [...players]
-            newPlayers.splice(i, 1)
+            newPlayers = players.filter((_, index) => index !== i)
             setPlayers(newPlayers)
         }
     }
@@ -47,53 +47,46 @@ export default function PartyList({ className } : { className?: string } ) {
     }
   
   return (
-    <div className={ className + ' flex flex-col gap-2'}>
-        <h2 className="text-xl font-semibold border-b border-amber-950 pb-3 mb-2">Grupo</h2>
+    <article className={ className + ' flex flex-col gap-3'}>
+        <h2 className="text-xl font-semibold border-b border-amber-950 pb-3">Grupo</h2>
         <AddPlayerForm/>
         <Reorder.Group 
         axis='y'
         values={initiative}
         onReorder={setInitiative}
-        className="flex flex-col pb-3 border-b border-amber-950"
+        className="w-full flex flex-col pb-3 border-b border-amber-950"
         >
             {
-                players.map((player, i) => 
+                initiative.map((init, i) => 
                 <Reorder.Item
-                key={initiative[i]}
-                value={initiative[i]}
+                key={init}
+                value={init}
                 className="w-full flex items-center"
                 >
-                    <div className="flex items-center gap-2 p-2 text-start cursor-pointer rounded-md hover:bg-amber-200/50">
-                        <p className="sm:w-[82px] text-lg font-bold truncate border-b border-amber-950">{player.name}</p>
+                    <div className="w-full  flex items-center gap-2 p-2 text-start cursor-pointer rounded-md hover:bg-amber-200/50">
+                        <p className="w-[100px] sm:w-[82px] text-lg font-bold truncate border-b border-amber-950">{ players[init] ? players[init].name : 'Nombre' }</p>
                         <p className="font-medium">HP:
                             <input 
                             type="text" 
-                            value={ player.hp }
+                            value={ players[init] ? players[init].hp : '0' }
                             min='0'
                             max='999'
-                            onChange={ (e) => handleHp(e, i) }
+                            onChange={ (e) => handleHp(e, init) }
                             className="w-[46px] px-2 ms-1"
                             />
                         </p>
                         {
-                            player.turn ?
+                            players[init] && players[init].turn ?
                             <button 
                             className='bg-none rounded-md'
-                            onClick={() => handleTurn(i)}
-                            >
-                                <svg fill="#d97706" width="24px" height="24px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="m198.6 601.4c-5.457-5.457-8.5195-12.855-8.5195-20.566 0-7.7148 3.0625-15.113 8.5195-20.566l61.699-61.699-41.133-41.133c-7.3477-7.3477-10.219-18.059-7.5312-28.094 2.6914-10.039 10.531-17.875 20.566-20.566 10.039-2.6875 20.746 0.17969 28.094 7.5273l123.4 123.39c7.3477 7.3477 10.219 18.059 7.5273 28.094-2.6875 10.039-10.527 17.879-20.562 20.57-10.039 2.6875-20.75-0.17969-28.098-7.5273l-41.129-41.137-61.703 61.703c-5.4531 5.4531-12.852 8.5156-20.562 8.5156-7.7148 0-15.113-3.0625-20.566-8.5156zm390.33-411.32h-52.574c-5.5703 0-10.906 2.2109-14.844 6.1484l-210.96 210.96 82.262 82.27 210.97-210.97v-0.003906c3.9336-3.9375 6.1406-9.2734 6.1406-14.836v-52.578c0-5.5664-2.2109-10.906-6.1484-14.844s-9.2734-6.1484-14.844-6.1484zm-49.223 308.49 41.133-41.133c7.3477-7.3477 10.215-18.059 7.5273-28.094-2.6914-10.039-10.531-17.875-20.566-20.566-10.039-2.6875-20.746 0.17969-28.094 7.5273l-123.4 123.39c-7.3477 7.3477-10.219 18.059-7.5273 28.094 2.6875 10.039 10.527 17.879 20.566 20.57 10.035 2.6875 20.746-0.17969 28.094-7.5273l41.133-41.133 61.699 61.699c7.3477 7.3477 18.055 10.215 28.094 7.5273 10.035-2.6914 17.875-10.531 20.566-20.566 2.6875-10.039-0.17969-20.746-7.5273-28.094zm-276.05-308.49h-52.578c-5.5664 0-10.906 2.2109-14.844 6.1484s-6.1484 9.2773-6.1484 14.844v52.578c0 5.5664 2.2109 10.906 6.1484 14.844l91.832 91.828 82.262-82.27-91.832-91.824c-3.9336-3.9375-9.2734-6.1484-14.84-6.1484z"/>
-                                </svg>
-                            </button>
-                            :
-                            <button 
-                            className='bg-none rounded-md'
-                            onClick={() => handleTurn(i)}
+                            onClick={() => handleTurn(init)}
                             >
                                 <svg fill="#fbbf24" width="24px" height="24px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m198.6 601.4c-5.457-5.457-8.5195-12.855-8.5195-20.566 0-7.7148 3.0625-15.113 8.5195-20.566l61.699-61.699-41.133-41.133c-7.3477-7.3477-10.219-18.059-7.5312-28.094 2.6914-10.039 10.531-17.875 20.566-20.566 10.039-2.6875 20.746 0.17969 28.094 7.5273l123.4 123.39c7.3477 7.3477 10.219 18.059 7.5273 28.094-2.6875 10.039-10.527 17.879-20.562 20.57-10.039 2.6875-20.75-0.17969-28.098-7.5273l-41.129-41.137-61.703 61.703c-5.4531 5.4531-12.852 8.5156-20.562 8.5156-7.7148 0-15.113-3.0625-20.566-8.5156zm390.33-411.32h-52.574c-5.5703 0-10.906 2.2109-14.844 6.1484l-210.96 210.96 82.262 82.27 210.97-210.97v-0.003906c3.9336-3.9375 6.1406-9.2734 6.1406-14.836v-52.578c0-5.5664-2.2109-10.906-6.1484-14.844s-9.2734-6.1484-14.844-6.1484zm-49.223 308.49 41.133-41.133c7.3477-7.3477 10.215-18.059 7.5273-28.094-2.6914-10.039-10.531-17.875-20.566-20.566-10.039-2.6875-20.746 0.17969-28.094 7.5273l-123.4 123.39c-7.3477 7.3477-10.219 18.059-7.5273 28.094 2.6875 10.039 10.527 17.879 20.566 20.57 10.035 2.6875 20.746-0.17969 28.094-7.5273l41.133-41.133 61.699 61.699c7.3477 7.3477 18.055 10.215 28.094 7.5273 10.035-2.6914 17.875-10.531 20.566-20.566 2.6875-10.039-0.17969-20.746-7.5273-28.094zm-276.05-308.49h-52.578c-5.5664 0-10.906 2.2109-14.844 6.1484s-6.1484 9.2773-6.1484 14.844v52.578c0 5.5664 2.2109 10.906 6.1484 14.844l91.832 91.828 82.262-82.27-91.832-91.824c-3.9336-3.9375-9.2734-6.1484-14.84-6.1484z"/>
                                 </svg>
                             </button>
+                            :
+                            null
                         }
                         <button 
                         className='bg-none rounded-md'
@@ -128,7 +121,8 @@ export default function PartyList({ className } : { className?: string } ) {
                 </Reorder.Item>
                 )
             }
-        </Reorder.Group> 
-    </div>
+        </Reorder.Group>
+        <PartyActions/>
+    </article>
   )
 }

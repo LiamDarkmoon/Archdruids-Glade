@@ -7,9 +7,11 @@ export interface Player {
     turn: boolean; // is it the player's turn  
 }  
 
-export interface CombatContextProps {  
-    players: Player[]; // array of players or undefined  
-    setPlayers: Dispatch<SetStateAction<Player[]>>; // function to set players  
+export interface CombatContextProps { 
+    initiative: number[]; // initiative order of the players
+    setInitiative: Dispatch<SetStateAction<number[]>>; // function to set players 
+    players: Player[]; // array of players  
+    setPlayers: Dispatch<SetStateAction<Player[]>>; // function to set players 
 }
 
 const initialState: Player[] = []
@@ -18,6 +20,7 @@ export const CombatContext = createContext<CombatContextProps | undefined>(undef
 
 export function CombatProvider({ children } : { children: React.ReactNode}) {
     const [players, setPlayers] = useState<Player[]>(initialState);
+    const [initiative, setInitiative] = useState(players.map((_, index) => index));
 
     useEffect(() => {
         // retrieve players to local storage
@@ -33,13 +36,32 @@ export function CombatProvider({ children } : { children: React.ReactNode}) {
             // save players to local storage
             localStorage.setItem('players', JSON.stringify(players));
         }
+        setInitiative(players.map((_, index) => index))
     }, [players])
+
+    useEffect(() => {
+        players.forEach((player, index) => {
+            if(index === initiative[0]) {
+                setPlayers((players) => {
+                    player.turn = true
+                    return players
+                })
+            } else {
+                setPlayers((players) => {
+                    player.turn = false
+                    return players
+                })
+            }
+        })
+    }, [initiative])
 
 
     return (
         <CombatContext.Provider value={{
             players,
-            setPlayers
+            setPlayers,
+            initiative,
+            setInitiative
         }}
         >
             {children}
