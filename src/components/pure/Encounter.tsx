@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Encounter() {
   return (
-    <div className="sm:w-[70%] flex flex-wrap items-start p-6 border border-amber-100/30 bg-amber-100/40 glass rounded-lg shadow-md">
-        <div className="sm:w-1/2 flex flex-col p-3 border-e border-amber-950 text-sm">
+    <div className="sm:w-[70%] flex flex-wrap items-start p-6 border border-amber-100/50 bg-amber-100/60 glass rounded-lg shadow-md">
+        <div className="sm:w-1/2 flex flex-col p-3 sm:border-e border-amber-950 text-sm">
             <h2 className="text-2xl font-bold mb-1">Cydrat, El Terror Rugiente</h2>
             <h3 className="text-sm font-bold italic mb-4">Dragon Colosal, Legal Malvado</h3>
             <div className="w-full flex flex-col gap-2 py-3 border-y border-amber-950">
@@ -37,7 +37,7 @@ export default function Encounter() {
             <p className='font-medium'><span className="font-bold">Mordida:</span> <span className="italic">ataque cuerpo a cuerpo</span> +17, alcance 15 pies, 2d10 +10 daño penetrante mas 2d10 daño de rayo</p>
             <p className='font-medium'><span className="font-bold">Garra:</span> <span className="italic">ataque cuerpo a cuerpo</span> +17, alcance 10 pies, 2d6 +10 daño cortante</p>
             <p className='font-medium'><span className="font-bold">Coletazo:</span> <span className="italic">ataque cuerpo a cuerpo</span> +17, alcance 20 pies, 2d8 +10 daño contundente</p>
-            <p><span className="font-bold">Presencia Atemorizante:</span> Las criaturas elegidas por Cydrat en un radio de 120 pies que puedan verlo deben realizar una salvacion de sabiduria CD 20 o quedar aterradas por 1 minuto. Una criatura puede repetir la tirada al final cada turno. Si la criatura supera la salvacion o el efecto termina, Esa criatura es inmune a la presencia del dragon por 24 horas. </p>
+            <p className="text-black"><span className="font-bold text-black">Presencia Atemorizante:</span> Las criaturas elegidas por Cydrat en un radio de 120 pies que puedan verlo deben realizar una salvacion de sabiduria CD 20 o quedar aterradas por 1 minuto. Una criatura puede repetir la tirada al final cada turno. Si la criatura supera la salvacion o el efecto termina, Esa criatura es inmune a la presencia del dragon por 24 horas. </p>
             <p><span className="font-bold">Aliento de Rayo (Recarga 5-6):</span> Cydrat exhala rayos en una linea de 120 pies y 10 pies de ancho. Las criaturas alcanzadas deben superar una salvacion de Destreza CD 23, recibiendo 16d10 daño de rayo si fallan o la mitad si la superan </p>
         </div>
         <div className="w-full flex flex-col gap-3 p-4 text-sm">

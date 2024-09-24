@@ -61,7 +61,7 @@ export default function PartyList({ className } : { className?: string } ) {
                 <Reorder.Item
                 key={initiative[i]}
                 value={initiative[i]}
-                className="flex items-center"
+                className="w-full flex items-center"
                 >
                     <div className="flex items-center gap-2 p-2 text-start cursor-pointer rounded-md hover:bg-amber-200/50">
                         <p className="sm:w-[82px] text-lg font-bold truncate border-b border-amber-950">{player.name}</p>
