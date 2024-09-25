@@ -109,3 +109,64 @@ export const monsters = [
         dex: 14,
     }
 ]
+
+export const Cydrat = {
+    name: 'Cydrat, El Terror Rugiente', // name of the monster  
+    ca: '22', // ca of the monster
+    hp: 500, // current hp of the monster  
+    turn: true, // is it the monster's turn  
+    attacks: [
+        {
+            name: 'Mordisco',
+            description: '+17, alcance 15 pies, 2d10 +10 daño penetrante mas 2d10 daño de rayo',
+            damage: '2d10+10',
+            type: 'Penetrante',
+            range: '15 pies'
+        },
+        {
+            name: 'Garra',
+            damage: '2d6+10',
+            description: '+17, alcance 10 pies, 2d6 +10 daño cortante',
+            type: 'Cortante',
+            range: '10 pies'
+        },
+        {
+            name: 'Coletazo',
+            damage: '2d8+10',
+            description: '+17, alcance 20 pies, 2d8 +10 daño contundente',
+            type: 'Contundente',
+            range: '20 pies'
+        },
+
+    ],
+    features: [
+        {
+            name: 'Coletazo',
+            damage: '2d8+10',
+            description: '+17, alcance 20 pies, 2d8 +10 daño contundente',
+            type: 'Contundente',
+            range: '20 pies'
+        },
+        {
+            name: 'Coletazo',
+            damage: '2d8+10',
+            description: '+17, alcance 20 pies, 2d8 +10 daño contundente',
+            type: 'Contundente',
+            range: '20 pies'
+        },
+        {
+            name: 'Coletazo',
+            damage: '2d8+10',
+            description: '+17, alcance 20 pies, 2d8 +10 daño contundente',
+            type: 'Contundente',
+            range: '20 pies'
+        },
+        {
+            name: 'Coletazo',
+            damage: '2d8+10',
+            description: '+17, alcance 20 pies, 2d8 +10 daño contundente',
+            type: 'Contundente',
+            range: '20 pies'
+        },
+    ],
+}

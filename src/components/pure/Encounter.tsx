@@ -1,14 +1,32 @@
-import React from 'react'
+import { useContext } from 'react'
+import { CombatContext, CombatContextProps } from '../../lib/contexts/CombatContext';
 
 export default function Encounter() {
+    const combatContext = useContext(CombatContext)
+
+    if (!combatContext) {
+        throw new Error('useCombatContext must be used within a contextProvider');
+    }
+
+    const { monster } = combatContext as CombatContextProps
+
   return (
     <div className="sm:w-[70%] flex flex-wrap items-start p-6 border border-amber-100/50 bg-amber-100/60 glass rounded-lg shadow-md">
         <div className="sm:w-1/2 flex flex-col p-3 sm:border-e border-amber-950 text-sm">
-            <h2 className="text-xl sm:text-2xl font-extrabold mb-1">Cydrat, El Terror Rugiente</h2>
+            <div className="flex justify-between items-center">
+                <h2 className="text-xl sm:text-2xl font-extrabold mb-1">{ monster.name }</h2>
+                <button 
+                className='bg-none rounded-md'
+                >
+                    <svg fill={ monster.turn ? "#b45309" : "none" } width="32px" height="32px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m198.6 601.4c-5.457-5.457-8.5195-12.855-8.5195-20.566 0-7.7148 3.0625-15.113 8.5195-20.566l61.699-61.699-41.133-41.133c-7.3477-7.3477-10.219-18.059-7.5312-28.094 2.6914-10.039 10.531-17.875 20.566-20.566 10.039-2.6875 20.746 0.17969 28.094 7.5273l123.4 123.39c7.3477 7.3477 10.219 18.059 7.5273 28.094-2.6875 10.039-10.527 17.879-20.562 20.57-10.039 2.6875-20.75-0.17969-28.098-7.5273l-41.129-41.137-61.703 61.703c-5.4531 5.4531-12.852 8.5156-20.562 8.5156-7.7148 0-15.113-3.0625-20.566-8.5156zm390.33-411.32h-52.574c-5.5703 0-10.906 2.2109-14.844 6.1484l-210.96 210.96 82.262 82.27 210.97-210.97v-0.003906c3.9336-3.9375 6.1406-9.2734 6.1406-14.836v-52.578c0-5.5664-2.2109-10.906-6.1484-14.844s-9.2734-6.1484-14.844-6.1484zm-49.223 308.49 41.133-41.133c7.3477-7.3477 10.215-18.059 7.5273-28.094-2.6914-10.039-10.531-17.875-20.566-20.566-10.039-2.6875-20.746 0.17969-28.094 7.5273l-123.4 123.39c-7.3477 7.3477-10.219 18.059-7.5273 28.094 2.6875 10.039 10.527 17.879 20.566 20.57 10.035 2.6875 20.746-0.17969 28.094-7.5273l41.133-41.133 61.699 61.699c7.3477 7.3477 18.055 10.215 28.094 7.5273 10.035-2.6914 17.875-10.531 20.566-20.566 2.6875-10.039-0.17969-20.746-7.5273-28.094zm-276.05-308.49h-52.578c-5.5664 0-10.906 2.2109-14.844 6.1484s-6.1484 9.2773-6.1484 14.844v52.578c0 5.5664 2.2109 10.906 6.1484 14.844l91.832 91.828 82.262-82.27-91.832-91.824c-3.9336-3.9375-9.2734-6.1484-14.84-6.1484z"/>
+                    </svg>
+                </button>
+            </div>
             <h3 className="text-sm font-bold italic mb-4">Dragon Colosal, Legal Malvado</h3>
             <div className="w-full flex flex-col gap-2 py-3 border-y border-amber-950">
-                <p><span className="font-bold">Clase de Armadura:</span> 22(Armadura Natural)</p>
-                <p><span className="font-bold">Puntos de Golpe:</span> 500(26d20 + 220)</p>
+                <p><span className="font-bold">Clase de Armadura:</span> {monster.ca}(Armadura Natural)</p>
+                <p><span className={ monster.hp <= 0 ? "text-red-500 font-bold" : "font-bold" }>Puntos de Golpe:</span> { monster.hp  >= 0 ? monster.hp : 0 } (26d20 + 220)</p>
                 <p><span className="font-bold">Velocidad:</span> 40 pies, Excabado 40 píes, Vuelo 80 pies</p>
             </div>
             <div className="w-full flex flex-col gap-3 py-3 border-b border-amber-950">

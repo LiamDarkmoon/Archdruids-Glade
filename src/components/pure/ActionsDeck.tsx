@@ -1,33 +1,47 @@
-import { useState } from 'react'
-import { Reorder } from "framer-motion"
+import { useReducer } from "react";
+import {  actionTypes } from "@/lib/Actions.enum";
+import Actions from "./Actions";
+
+function actionReducer(state: {action:string}, action: string) {
+    switch (action) {
+        case 'Accion':
+            // show actions
+            return { action: 'action' };
+        case 'Accion Rapida':
+            // show bonus actions
+            return { action: 'bonus action' };
+        case 'Movimiento':
+            // move
+            return { action: 'move' };
+        case 'Reaccion':
+            // show reactions
+            return { action: 'reaction' };
+        }
+    throw Error('Unknown action: ' + action);
+}
 
 export default function ActionsDeck() {
-    const [order, setOrder] = useState([0, 1, 2, 3, 4]);
-    const actions = [
-        'Atacar',
-        'Hechizo',
-        'Correr',
-        'Defender',
-        'Retirarse'
-    ]
+    const [state, dispatch] = useReducer(actionReducer, { action: '' });
 
   return (
-    <Reorder.Group
-    values={order}
-    onReorder={setOrder}
-    className="flex flex-col gap-2"
-    >
-        {
-        order.map((item)=> 
-            <Reorder.Item
-            key={item}
-            value={item}
-            >
-                <div className="flex items-center justify-center bg-amber-200/50 rounded-md p-3">
-                { actions[item] }
-                </div>
-            </Reorder.Item>
-        )}
-    </Reorder.Group>
+    <>
+    {
+        state.action === 'action' ? <Actions/> :
+        <ul
+        className="flex flex-col gap-2"
+        > 
+            {
+            actionTypes.map((action, i)=> 
+                <li
+                key={i}
+                className="flex flex-col items-center justify-center bg-amber-200/50 rounded-md p-2 hover:bg-amber-200/80 hover:scale-1.2 hover:cursor-pointer transition-all duration-200"
+                onClick={() => dispatch(action)}
+                >
+                    { action }
+                </li>
+            )}
+        </ul>
+    }
+    </>
   )
 }
