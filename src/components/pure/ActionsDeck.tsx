@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import {  actionTypes } from "@/lib/Actions.enum";
+import {  actionTypes } from "@/lib/ActionTypes.enum";
 import Actions from "./Actions";
 
 function actionReducer(state: {action:string}, action: string) {
