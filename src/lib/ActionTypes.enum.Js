@@ -10,7 +10,7 @@ export const actions = [
         description: 'Lanza un hechizo'
     },
     {
-        name: 'Correr',
+        name: 'Correrr',
         description: 'Duplica la velocidad de movimiento'
     },
     {
