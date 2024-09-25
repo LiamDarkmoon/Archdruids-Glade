@@ -29,10 +29,9 @@ export interface Player {
     name: string; // name of the player  
     hp: string; // current hp of the player  
     turn: boolean; // is it the player's turn  
-    attacks: attack[];
+    attacks?: attack[];
     spells?: spell[];
-    features: feature[]; // features of the player
-
+    features?: feature[]; // features of the player
 }  
 export interface monster {  
     name: string; // name of the monster  
