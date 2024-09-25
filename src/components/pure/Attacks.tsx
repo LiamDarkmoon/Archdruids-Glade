@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { CombatContext, CombatContextProps, attack } from '../../lib/contexts/CombatContext';
-import { attacks } from "@/lib/ActionTypes.enum";
+import { attacks } from "@/lib/ActionTypes.js";
 
 export default function ActionsDeck() {
     const combatContext = useContext(CombatContext)
