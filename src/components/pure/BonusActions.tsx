@@ -1,54 +1,45 @@
 import { useState, useReducer } from 'react'
-import { actions } from '@/lib/ActionTypes.js'
-import Attacks from './Attacks';
+import { bonusActions } from '@/lib/ActionTypes.js'
+import Potions from './Potions';
 
 function actionReducer(state: {action:string}, action: string) {
     switch (action) {
-        case 'Atacar':
+        case 'Posion':
             // show actions
-            return { action: 'attack' };
-        case 'Conjurar':
+            return { action: 'potion' };
+        case 'Conjuro Rapido':
             // show bonus actions
-            return { action: 'cast' };
-        case 'Defender':
+            return { action: 'Quicken Spell' };
+        case '':
             // move
-            return { action: 'dodge' };
-        case 'Retirarse':
-            // show reactions
-            return { action: 'disengage' };
-        case 'Correrr':
-            // show reactions
-            return { action: 'dash' };
+            return { action: '' };
         }
     throw Error('Unknown action: ' + action);
 }
 
-export default function Actions() {
+export default function BonusActions() {
     const [state, dispatch] = useReducer(actionReducer, { action: '' });
     const [order, setOrder] = useState([0, 1, 2, 3, 4]);
 
   return (
     <>
     {
-        state.action === 'attack' ? <Attacks/> : 
+        state.action === 'potion' ? <Potions/> : 
         <ul
         className="flex flex-col gap-2"
         >
             {
-            actions.map((action, i) => 
+            bonusActions.map((action, i) => 
                 <li
                 key={i}
                 >
                     <div 
                     className="flex flex-col items-center justify-center bg-amber-200/50 rounded-md p-2 hover:bg-amber-200/80 hover:scale-1.2 hover:cursor-pointer transition-all duration-200"
-                    onClick={() => {dispatch(action.name), console.log(action.name)}}
+                    onClick={() => dispatch(action)}
                     >
                         <h2 className="w-full text-center font-semibold pb-2 border-b border-amber-950">
-                            { action.name }
+                            { action}
                         </h2>
-                        <p className=" p-3 text-sm">
-                            { action.description }
-                        </p>
                     </div>
                 </li>
             )}

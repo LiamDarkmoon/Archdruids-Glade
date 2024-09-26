@@ -1,3 +1,5 @@
+import { actionsT } from "./ActionTypes"
+
 export const characters = [
     {
         id:1,
@@ -112,13 +114,16 @@ export const monsters = [
 
 export const Cydrat = {
     name: 'Cydrat, El Terror Rugiente', // name of the monster  
-    ca: '22', // ca of the monster
+    ca: 22, // ca of the monster
     hp: 500, // current hp of the monster  
-    turn: true, // is it the monster's turn  
+    turn: true, // is it the monster's turn
+    actions: actionsT,
+    multiattack: 4,
     attacks: [
         {
             name: 'Mordisco',
             description: '+17, alcance 15 pies, 2d10 +10 daño penetrante mas 2d10 daño de rayo',
+            bonus: 17,
             damage: '2d10+10',
             type: 'Penetrante',
             range: '15 pies'
@@ -127,6 +132,7 @@ export const Cydrat = {
             name: 'Garra',
             damage: '2d6+10',
             description: '+17, alcance 10 pies, 2d6 +10 daño cortante',
+            bonus: 17,
             type: 'Cortante',
             range: '10 pies'
         },
@@ -134,6 +140,7 @@ export const Cydrat = {
             name: 'Coletazo',
             damage: '2d8+10',
             description: '+17, alcance 20 pies, 2d8 +10 daño contundente',
+            bonus: 17,
             type: 'Contundente',
             range: '20 pies'
         },

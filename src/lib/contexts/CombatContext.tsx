@@ -5,6 +5,8 @@ import { Cydrat } from '../placeholders';
 export interface attack  {
         name: string; // name of the attack
         description: string; // description of the attack
+        bonus: number; // bonus of the attack
+        dc?: number; // dc of the attack
         damage: string; // damage of the attack
         type: string; // type of the attack
         range: string; // range of the attack
@@ -12,10 +14,18 @@ export interface attack  {
 export interface spell  {
         name: string; // name of the spell
         description: string; // description of the spell
+        bonus?: number; // bonus of the spell
+        dc?: number; // dc of the spell
         damage?: string; // damage of the spell
         effect?: string; // effect of the spell
         type: string; // type of the spell
         range: string; // range of the spell
+}
+
+export interface potion {
+        name: string; // name of the potion
+        description: string; // description of the potion
+        effect: string; // effect of the potion
 }
 export interface feature  {
         name: string; // name of the feature
@@ -24,23 +34,47 @@ export interface feature  {
         effect?: string; // effect of the feature
         range?: string; // range of the feature
 }
+export interface actions {
+    action: {
+        name: string; // name of the action
+        taken: boolean; // has the action been taken
+    }
+    bonusAction: {
+        name: string; // name of the bonus action
+        taken: boolean; // has the bonus action been taken
+    }
+    movement: {
+        name: string; // name of the movement
+        taken: boolean; // has the movement been taken
+    }
+    reaction: {
+        name: string; // name of the reaction
+        taken: boolean; // has the reaction been taken
+    }
+}
 
 export interface Player {  
     name: string; // name of the player  
+    ca: number; // current armor class of the player
     hp: string; // current hp of the player  
     turn: boolean; // is it the player's turn  
-    attacks?: attack[];
+    attacks: attack[];
     spells?: spell[];
+    potions?: potion[];
     features?: feature[]; // features of the player
+    actions: actions; // actions of the player
+    multiattack?: number | undefined;
 }  
 export interface monster {  
     name: string; // name of the monster  
-    ca: string; // ca of the monster
+    ca: number; // ca of the monster
     hp: number; // current hp of the monster  
     turn: boolean; // is it the monster's turn  
     attacks: attack[];
     spells?: spell[];
-    features: feature[]; // features of the player
+    features: feature[]; // features of the monster
+    actions: actions; // actions of the monster
+    multiattack?: number | undefined;
 }  
 
 export interface CombatContextProps { 
@@ -79,20 +113,13 @@ export function CombatProvider({ children } : { children: React.ReactNode}) {
     }, [players])
 
     useEffect(() => {
-        players.forEach((player, index) => {
-            if(index === initiative[0]) {
-                setPlayers((players) => {
-                    player.turn = true
-                    return players
-                })
-            } else {
-                setPlayers((players) => {
-                    player.turn = false
-                    return players
-                })
-            }
-        })
-    }, [initiative])
+        setPlayers((prevPlayers) =>  
+            prevPlayers.map((player, index) => ({  
+                ...player,  
+                turn: index === initiative[0] // Ajusta el booleano según si el índice coincide  
+            }))  
+        ); 
+    }, [initiative[0]])
 
 
     return (

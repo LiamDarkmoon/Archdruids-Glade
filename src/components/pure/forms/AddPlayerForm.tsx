@@ -2,6 +2,7 @@
 import { useContext, useState } from 'react'
 import Button from '../../pure/Btn';
 import { CombatContext, CombatContextProps } from '../../../lib/contexts/CombatContext';
+import { actionsT, attacks, potions } from '@/lib/ActionTypes';
 
 export default function AddPlayerForm() {
     const combatContext = useContext(CombatContext)
@@ -23,7 +24,15 @@ export default function AddPlayerForm() {
     const handleAddPlayer = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (player !== '' && visible) {
-            setPlayers([...players, {name: player, hp: '000', turn:false}])
+            setPlayers([...players, {
+                name: player, 
+                hp: '00', 
+                ca:12, 
+                turn:false, 
+                actions: actionsT, 
+                attacks: attacks,
+                potions: potions,
+            }])
             setPlayer('')
             setVisible(false)
         }
