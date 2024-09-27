@@ -1,22 +1,15 @@
-import { useEffect } from 'react'
-import { actions } from '../../lib/contexts/CombatContext';
+import useTurn from '@/lib/hooks/useTurn';
 
-interface action {
-    name: string,
-    taken: boolean
-}
-
-export default function ActionList({ actions }: { actions: actions }) {
-    const actionList = Object.values(actions).map(action => (action as action).name)
-    const actionsTaken = Object.values(actions).map(action => (action as action).taken)
+export default function ActionList() {
+    const { actions, taken } = useTurn()
 
   return (
-    <ul className='grid grid-cols-2 grid-rows-2 gap-2'>
-        {actionList.map((action, i) => (
-            <li key={i} className='font-semibold'>
+    <ul className='flex gap-2 justify-center'>
+        {actions.map((action, i) => (
+            <li key={i} className='font-semibold truncate'>
                 <input 
                 type='checkbox'
-                checked={actions ? actionsTaken[i] : false}
+                checked={actions ? taken[i] : false}
                 readOnly
                 className='me-1 rounded-xs'
                 />

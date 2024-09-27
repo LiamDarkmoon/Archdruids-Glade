@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react'
+import { useReducer } from 'react'
 import { actions } from '@/lib/ActionTypes.js'
 import Attacks from './Attacks';
 
@@ -25,7 +25,6 @@ function actionReducer(state: {action:string}, action: string) {
 
 export default function Actions() {
     const [state, dispatch] = useReducer(actionReducer, { action: '' });
-    const [order, setOrder] = useState([0, 1, 2, 3, 4]);
 
   return (
     <>

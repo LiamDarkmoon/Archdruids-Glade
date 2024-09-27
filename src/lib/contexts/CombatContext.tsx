@@ -47,16 +47,12 @@ export interface actions {
         name: string; // name of the movement
         taken: boolean; // has the movement been taken
     }
-    reaction: {
-        name: string; // name of the reaction
-        taken: boolean; // has the reaction been taken
-    }
 }
 
-export interface Player {  
+export interface player {  
     name: string; // name of the player  
     ca: number; // current armor class of the player
-    hp: string; // current hp of the player  
+    hp: number; // current hp of the player  
     turn: boolean; // is it the player's turn  
     attacks: attack[];
     spells?: spell[];
@@ -80,19 +76,19 @@ export interface monster {
 export interface CombatContextProps { 
     initiative: number[]; // initiative order of the players
     setInitiative: Dispatch<SetStateAction<number[]>>; // function to set players 
-    players: Player[]; // array of players  
-    setPlayers: Dispatch<SetStateAction<Player[]>>; // function to set players
+    players: player[]; // array of players  
+    setPlayers: Dispatch<SetStateAction<player[]>>; // function to set players
     monster: monster; // monster object
     setMonster: Dispatch<SetStateAction<monster>>; // function to set monster
 }
 
-const initialState: Player[] = []
+const initialState: player[] = []
 
 export const CombatContext = createContext<CombatContextProps | undefined>(undefined);
 
 export function CombatProvider({ children } : { children: React.ReactNode}) {
     const [monster, setMonster] = useState<monster>(Cydrat);
-    const [players, setPlayers] = useState<Player[]>(initialState);
+    const [players, setPlayers] = useState<player[]>(initialState);
     const [initiative, setInitiative] = useState(players.map((_, index) => index));
 
     useEffect(() => {
@@ -102,6 +98,12 @@ export function CombatProvider({ children } : { children: React.ReactNode}) {
             return Players ? JSON.parse(Players) : []
         }
         setPlayers(getInitialState())
+        setPlayers((prevPlayers) =>  
+            prevPlayers.map((player, index) => ({  
+                ...player,  
+                turn: index === 0 // Ajusta el booleano según si el índice coincide  
+            }))  
+        ); 
     }, [])
 
     useEffect(() => {
@@ -111,15 +113,6 @@ export function CombatProvider({ children } : { children: React.ReactNode}) {
         }
         setInitiative(players.map((_, index) => index))
     }, [players])
-
-    useEffect(() => {
-        setPlayers((prevPlayers) =>  
-            prevPlayers.map((player, index) => ({  
-                ...player,  
-                turn: index === initiative[0] // Ajusta el booleano según si el índice coincide  
-            }))  
-        ); 
-    }, [initiative[0]])
 
 
     return (

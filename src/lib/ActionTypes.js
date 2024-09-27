@@ -13,10 +13,6 @@ export const actionsT =  {
         name: 'Movimiento', // name of the movement
         taken: false, // has the movement been taken
     },
-    reaction: {
-        name: 'Reaccion', // name of the reaction
-        taken: false, // has the reaction been taken
-    }
 }
 
 export const bonusActions = [

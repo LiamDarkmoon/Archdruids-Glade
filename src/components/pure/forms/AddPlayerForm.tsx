@@ -26,7 +26,7 @@ export default function AddPlayerForm() {
         if (player !== '' && visible) {
             setPlayers([...players, {
                 name: player, 
-                hp: '00', 
+                hp: 10, 
                 ca:12, 
                 turn:false, 
                 actions: actionsT, 
@@ -58,6 +58,7 @@ export default function AddPlayerForm() {
             className='w-full md:w-[319px] p-2 border border-amber-700 rounded-md'
             onChange={handleInputChange}
             value={player}
+            autoFocus
             />
         }
         <Button
