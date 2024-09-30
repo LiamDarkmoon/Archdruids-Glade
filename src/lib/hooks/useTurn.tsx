@@ -152,7 +152,7 @@ const useTurn = () => {
         if(spell.type === 'buff') {
             const buff = {
                 name: spell.name,
-                duration: parseInt(spell.duration),
+                duration: spell.duration,
             }
             player.buffs = [...player.buffs, buff];
             setPlayers((prevPlayers) => prevPlayers.map((p) => p.turn === true ? player : p));

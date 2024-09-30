@@ -15,7 +15,7 @@ export interface spell  {
         name: string; // name of the spell
         description: string; // description of the spell
         castingTime: string; //casting time of the spell
-        duration: string; // duration of the spell
+        duration: number; // duration of the spell
         bonus?: number; // bonus of the spell
         dc?: number; // dc of the spell
         damage?: string; // damage of the spell
