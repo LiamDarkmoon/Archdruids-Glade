@@ -77,6 +77,25 @@ export const attacks = [
         range: '30 pies'
     }
 ]
+export const spells = [
+    {
+        name: 'Escudo',
+        description: 'Un escudo de energía invisible te protege de los ataques',
+        castingTime: 'reaccion',
+        duration: 1,
+        type: 'buff',
+        range: 'personal'
+    }, 
+    {
+        name: 'Armadura de Mago',
+        description: 'una armadura de fuerza invisible te proteje de los ataques externos',
+        castingTime: '1 acción',
+        duration: 10,
+        effect: 'Armadura= 13 + dex',
+        type: 'buff',
+        range: 'personal'
+    } 
+]
 
 export const potions = [
     {

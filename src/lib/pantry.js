@@ -1,12 +1,12 @@
 import pantry from 'pantry-node'
 
-const pantryID = "b687669c-4309-4819-9890-88c58002c521"
+const pantryID = "48d1f59a-c11d-4507-b414-ef75ba74ef2d"
 const pantryClient = new pantry(pantryID)
 const options = { parseJSON: true } // optional
 
 export function GetMonsters() {
   pantryClient.basket
-  .get('Monsters', options)
+  .get('characters', options)
   .then((res) => console.log(res))
   /* return contents */
 }

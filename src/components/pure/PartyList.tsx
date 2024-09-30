@@ -6,7 +6,7 @@ export default function PartyList() {
 
   return (
     <ul
-    className="w-full flex flex-col pb-3 border-b border-amber-950"
+    className="max-w-full flex flex-col pb-3 border-b border-amber-950"
     >
         {
             players && players.map((player, i) => 

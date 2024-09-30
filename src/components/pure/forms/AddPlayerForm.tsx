@@ -2,7 +2,7 @@
 import { useContext, useState } from 'react'
 import Button from '../../pure/Btn';
 import { CombatContext, CombatContextProps } from '../../../lib/contexts/CombatContext';
-import { actionsT, attacks, potions } from '@/lib/ActionTypes';
+import { actionsT, attacks, potions, spells } from '@/lib/ActionTypes';
 
 export default function AddPlayerForm() {
     const combatContext = useContext(CombatContext)
@@ -28,10 +28,15 @@ export default function AddPlayerForm() {
                 name: player, 
                 hp: 10, 
                 ca:12, 
-                turn:false, 
+                turn: false, 
+                initiative: 0,
+                reaction: true,
                 actions: actionsT, 
                 attacks: attacks,
+                spells: spells,
                 potions: potions,
+                buffs:[],
+                debuffs:[],
             }])
             setPlayer('')
             setVisible(false)
